@@ -17,6 +17,8 @@ add_executable(seahawk
 target_link_libraries(seahawk
     pico_stdlib
     microros
+    hardware_pwm
+    hardware_pio
 )
 
 target_include_directories(seahawk PUBLIC
