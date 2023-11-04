@@ -84,6 +84,14 @@ int main()
         // Unreachable agent, exiting program.
         return ret;
     }
+    uint gpio[8] = {10, 11, 12, 13, 18, 19, 20, 21};
+    uint16_t levels[8] = {1500, 2500, 1500, 1500, 1500, 1500, 1500, 1500};
+    config_pwm(gpio, 8, 3000);
+    for (int i = 0; i < 8; i++) {
+        pwm_set_gpio_level(gpio[i], levels[i]);
+        pwm_set_clkdiv_int_frac(pwm_gpio_to_slice_num(gpio[i]), 125, 0);
+        pwm_set_enabled(pwm_gpio_to_slice_num(gpio[i]), true);
+    }
 
     rclc_support_init(&support, 0, NULL, &allocator);
 
