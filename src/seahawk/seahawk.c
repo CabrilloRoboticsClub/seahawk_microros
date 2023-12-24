@@ -80,6 +80,27 @@ enum dshot_cmds {
 };
 
 /**
+ * Generates a frame given a throttle and telemetry value
+ * 
+ * Frames are organized in the following 16 bit pattern: SSSSSSSSSSSTCCCC
+ *  (S) 11 bit throttle
+ *  (T) 1 bit telemetry request
+ *  (C) 4 bit Cyclic Redundancy Check (CRC) (calculated in this function)
+ * 
+ * @param throttle Throttle value (11 bits) 
+ * @param telemetry Telemetry value (1 bit), true (1) if telemetry should be used, false (0) if not. Defaults to false
+ * @return A 16 bit package of data to send following the parrern SSSSSSSSSSSTCCCC
+*/
+inline uint16_t create_packet(uint16_t throttle, bool telemetry=false) {
+    // Shift everything in the backet over by one place then append telem
+    uint16_t data = (throttle << 1) | telemetry;
+    // CRC calculation
+    uint8_t crc = (data ^ (data >> 4) ^ (data >> 8)) & 0x0F;
+
+    return (data << 4) | crc;
+}
+
+/**
  * Initializes any dshot settings upon activation
  * 
  * Initialize pio, enable 3D DSHOT, and save settings
