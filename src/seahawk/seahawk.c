@@ -1,7 +1,10 @@
+// C libaries
 #include <stdio.h>
+#include <bool.h>
 #include <time.h>
 #include <stdint.h>
 
+// Micro ROS libaries
 #include <rcl/rcl.h>
 #include <rcl/error_handling.h>
 #include <rclc/rclc.h>
@@ -10,13 +13,14 @@
 #include <std_msgs/msg/int16_multi_array.h>
 #include <rmw_microros/rmw_microros.h>
 
+// Pico libaries
 #include "pico/stdlib.h"
 #include "pico_uart_transports.h"
 #include "hardware/pio.h"
 #include "hardware/pwm.h"
 
-#define true 1
-#define false 0
+// PIO program
+#include "send_dshot_packet.pio.h"
 
 // Motor constants
 const int NUM_MOTORS = 8;
@@ -31,16 +35,6 @@ std_msgs__msg__Int16MultiArray msg;
 const float T1H = 1.67e-6 * 0.75;
 // 37% of a full period sends a zero
 const float T0H = 1.67e-6 * 0.37;
-
-// If you enable 3D mode, the throttle ranges split in two
-// Direction 1) 48 is the slowest, 1047 is the fastest
-// Direction 2) 1049 is the slowest, 2047 is the fastest
-// 1048 does NOT stop the motor! Use DSHOT_CMD_MOTOR_STOP for that.
-// ***These values should probably be in the file that converts pilot input to throttle***
-const unsigned int DIR_1_LOW = 48;
-const unsigned int DIR_1_HIGH = 1047;
-const unsigned int DIR_2_LOW = 1049;
-const unsigned int DIR_2_HIGH = 2047;
 
 // See: https://brushlesswhoop.com/dshot-and-bidirectional-dshot/
 enum dshot_cmds {
@@ -88,49 +82,29 @@ enum dshot_cmds {
 /**
  * Initializes any dshot settings upon activation
  * 
- * Enable 3D DSHOT 
- * Save settings
+ * Initialize pio, enable 3D DSHOT, and save settings
+ * 
+ * @param pio PIO instance
+ * @param sm State machine
+ * @param offset Location in memory where the assembled program is stored
 */
-inline void init_dshot() {
-    // Unsure if this is the corrrect way of initializing stuff??
-    // This seems wrong and definitely needs fixing
-    
-    // Enbling 3D dshot splits throttle range in two allowing for
-    // motors to spin in either direction. Must be sent 6 times
-    for (int i = 0; i < 6; i++) {
-        for (int j = 0; j < NUM_MOTORS; j++) {
-            send_packet(GPIO[j], DSHOT_CMD_3D_MODE_ON);
-        }
-    }
-    
-    // Must save settings after changing any. Send 6x, wait 35ms
-    for (int i = 0; i < 6; i++) {
-        for (int j = 0; j < NUM_MOTORS; j++) {
-            send_packet(GPIO[j], DSHOT_CMD_SAVE_SETTINGS);
-        }
-    }
-    nanosleep(35 * 1000);
-}
+inline void init_dshot(PIO pio, uint sm, uint offset) {
+    uint16_t dshot_3d_packet = create_packet(DSHOT_CMD_3D_MODE_ON);
+    uint16_t save_settings_packet = create_packet(DSHOT_CMD_SAVE_SETTINGS);
 
-/**
- * Generates a frame given a throttle and telemetry value
- * 
- * Frames are organized in the following 16 bit pattern: SSSSSSSSSSSTCCCC
- *  (S) 11 bit throttle
- *  (T) 1 bit telemetry request
- *  (C) 4 bit Cyclic Redundancy Check (CRC) (calculated in this function)
- * 
- * @param throttle Throttle value (11 bits) 
- * @param telemetry Telemetry value (1 bit), true (1) if telemetry should be used, false (0) if not. Defaults to false
- * @return A 16 bit package of data to send following the parrern SSSSSSSSSSSTCCCC
-*/
-inline uint16_t create_packet(uint16_t throttle, _Bool telemetry=false) {
-    // Shift everything in the backet over by one place then append telem
-    uint16_t data = (throttle << 1) | telemetry;
-    // CRC calculation
-    uint8_t crc = (data ^ (data >> 4) ^ (data >> 8)) & 0x0F;
-    
-    return (data << 4) | crc;
+    for (int i = 0; i < NUM_MOTORS; i++) {
+        // Initialize pio program
+        send_dshot_packet_program_init(pio, sm, offset, GPIO[i]);
+        // Enable 3D dshot (packet must be sent 6 times)
+        for (int j = 0; i < 6; j++) {
+            send_packet(GPIO[i], dshot_3d_packet);
+        }
+        // Save settings after changing any (must be sent 6 times and wait 35 ms)
+        for (int j = 0; i < 6; j++) {
+            send_packet(GPIO[i], save_settings_packet);
+        }
+        sleep_ms(35);
+    }
 }
 
 /**
@@ -149,14 +123,12 @@ inline void low(int pin) {
 }
 
 /**
- * Sends a packet of throttle data to a pin
+ * Sends a packet of throttle data to a pin via bit banging
  * 
  * @param pin The pin to send values too
- * @param throttle Throttle value (11 bits) 
- * @param telemetry Telemetry value (1 bit), true (1) if telemetry should be used, false (0) if not. Defaults to false
+ * @param packet 16 bit DSHOT packet formatted in the SSSSSSSSSSSTCCCC pattern
 */
-inline void send_packet(int pin, uint16_t throttle, _Bool telemetry=false) {
-    uint16_t packet = create_packet(throttle, telemetry);
+inline void send_packet(int pin, uint16_t packet) {
     for (int i = 15; i >= 0; i--) {
         // Isolate one bit then check if it is one, set to high
         if ((packet >> i) & 1) {
@@ -201,11 +173,6 @@ int main() {
 		pico_serial_transport_read
 	);
 
-    // Not really sure what all this stuff does, mike help! I just copied the main of seahawk.c
-    
-    gpio_init(LED_PIN);
-    gpio_set_dir(LED_PIN, GPIO_OUT);
-
     rcl_timer_t timer;
     rcl_node_t node;
     rcl_allocator_t allocator;
@@ -220,16 +187,26 @@ int main() {
 
     rcl_ret_t ret = rmw_uros_ping_agent(timeout_ms, attempts);
 
-    if (ret != RCL_RET_OK)
-    {
+    if (ret != RCL_RET_OK) {
         // Unreachable agent, exiting program.
         return ret;
     }
-    // config_pwm(3000);
-    // Probaly call dshot_init here
-    init_dshot();
     
     rclc_support_init(&support, 0, NULL, &allocator);
+
+    // PIO instance
+    // PIO pio = pio0;
+
+    // Load assembled program into PIO instruction memory
+    // 'offset' is assigned the location of the program in memory
+    uint offset = pio_add_program(pio, &send_dshot_packet_program);
+
+    // Find unclaimed state mashine for PIO
+    // True arg makes the function throw an error if none are avaliable
+    uint sm = pio_claim_unused_sm(pio, true);
+
+    // Initialize dshot
+    init_dshot(pio, sm, offset);
 
     rclc_node_init_default(&node, "pico_node", "", &support);
     
@@ -237,7 +214,7 @@ int main() {
         &subscriber, 
         &node,
         type_support, 
-        "pico_in");
+        "motor_msgs");
 
     // rclc_publisher_init_default(
     //     &publisher,
@@ -256,8 +233,7 @@ int main() {
 
     gpio_put(LED_PIN, 1);
 
-    while (true)
-    {
+    while (true) {
         rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
     }
     return 0;

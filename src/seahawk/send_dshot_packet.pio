@@ -1,0 +1,13 @@
+.program send_dshot_encoder
+
+% c-sdk {
+static inline void send_dshot_packet_program_init(PIO pio, uint sm, uint offset, uint pin) {
+    
+}
+%}
+
+
+; Resources:
+; https://rp2040pio-docs.readthedocs.io/en/latest/pio-programs.html
+; https://github.com/raspberrypi/pico-examples/blob/master/pio/hello_pio/hello.pio#L7-L15
+; https://core-electronics.com.au/attachments/localcontent/raspberry-pi-pico-c-sdk_3876448922c.pdf
