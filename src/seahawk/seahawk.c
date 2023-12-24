@@ -22,9 +22,11 @@
 // PIO program
 #include "send_dshot_packet.pio.h"
 
-// Motor constants
 const int NUM_MOTORS = 8;
-const uint GPIO[8] = {10, 11, 12, 13, 18, 19, 20, 21}; // Pins on the pico we are using for motors
+// Each PIO instance has 4 state machines, each state machine will handle four of the motors
+const int NUM_MOTORS_PER_INSTANCE = 4
+const uint GPIO_0[4] = {10, 11, 12, 13}; // Pins on the pico we are using for motors
+const uint GPIO_1[4] = {18, 19, 20, 21};
 
 // Micro ROS globals
 rcl_subscription_t subscriber;
@@ -114,8 +116,6 @@ inline void init_dshot(PIO pio, uint sm, uint offset) {
     uint16_t save_settings_packet = create_packet(DSHOT_CMD_SAVE_SETTINGS);
 
     for (int i = 0; i < NUM_MOTORS; i++) {
-        // Initialize pio program
-        send_dshot_packet_program_init(pio, sm, offset, GPIO[i]);
         // Enable 3D dshot (packet must be sent 6 times)
         for (int j = 0; i < 6; j++) {
             send_packet(GPIO[i], dshot_3d_packet);
@@ -125,6 +125,8 @@ inline void init_dshot(PIO pio, uint sm, uint offset) {
             send_packet(GPIO[i], save_settings_packet);
         }
         sleep_ms(35);
+        // Initialize pio program
+        send_dshot_packet_program_init(pio, sm, offset, GPIO[i]);
     }
 }
 
@@ -181,6 +183,32 @@ inline void set_throttle_values(uint16_t vals[]) {
     }
 }
 
+struct PioProgram {
+    PIO pio;
+    unit offset;
+    unit gpio_pins[NUM_MOTORS_PER_INSTANCE];
+    unit sm[NUM_MOTORS_PER_INSTANCE];
+};
+
+struct PioProgram setup_pio(int instance) {
+    struct PioProgram pio_program;
+
+    // Which PIO instance (there are two PIO instances on the pico)
+    pio_program.pio = instance == 0 ? pio0 : pio1;
+
+    // Load assembled program into PIO instruction memory
+    // 'offset' is assigned the location of the program in memory
+    pio_program.offset = pio_add_program(pio_program.pio, &send_dshot_packet_program);
+
+    // Find unclaimed state mashine
+    // True arg makes the function throw an error if none are avaliable
+    for (int i = 0; i < pio_program) {
+        pio_program.sm[i] = pio_claim_unused_sm(pio_program.pio, true);
+    }
+
+    pio_program.gpio_pins = if instance == 0 ? GPIO_0 : GPIO_1;
+}
+
 int main() {
     const rosidl_message_type_support_t * type_support =
         ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
@@ -215,8 +243,13 @@ int main() {
     
     rclc_support_init(&support, 0, NULL, &allocator);
 
-    // PIO instance
-    // PIO pio = pio0;
+    struct PioProgram pio_0 = {pio0, pio_add_program(pio0, &send_dshot_packet_program), GPIO_0};
+    struct PioProgram pio_0 = {pio0, pio_add_program(pio0, &send_dshot_packet_program), GPIO_0};
+
+    // PIO instances (there are two PIO instances on)
+    PIO pio_0 = pio0;
+    PIO pio_0 = pio1;
+
 
     // Load assembled program into PIO instruction memory
     // 'offset' is assigned the location of the program in memory
