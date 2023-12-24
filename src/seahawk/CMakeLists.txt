@@ -37,3 +37,20 @@ add_compile_definitions(PICO_STDIO_DEFAULT_CRLF=0)
 
 # Generate UF2
 pico_add_extra_outputs(seahawk)
+
+
+##################### PIO STUFF #######################
+add_executable(send_dshot_packet_program)
+
+pico_generate_pio_header(send_dshot_packet_program ${CMAKE_CURRENT_LIST_DIR}/send_dshot_packet.pio)
+
+target_sources(send_dshot_packet_program PRIVATE seahawk.c)
+
+target_link_libraries(send_dshot_packet_program PRIVATE
+        pico_stdlib
+        hardware_pio
+        )
+pico_add_extra_outputs(send_dshot_packet_program)
+
+# add url via pico_set_program_url
+example_auto_set_url(send_dshot_packet_program)
