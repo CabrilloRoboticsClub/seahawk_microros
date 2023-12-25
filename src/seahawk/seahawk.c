@@ -22,11 +22,11 @@
 // PIO program
 #include "send_dshot_packet.pio.h"
 
-const int NUM_MOTORS = 8;
+const uint NUM_MOTORS = 8;
 // Each PIO instance has 4 state machines, each state machine will handle four of the motors
-const int NUM_MOTORS_PER_INSTANCE = 4
-const uint GPIO_0[4] = {10, 11, 12, 13}; // Pins on the pico we are using for motors
-const uint GPIO_1[4] = {18, 19, 20, 21};
+const uint NUM_SM_PIO = 4
+const uint GPIO_0[NUM_SM_PIO] = {10, 11, 12, 13}; // Pins on the pico we are using for motors
+const uint GPIO_1[NUM_SM_PIO] = {18, 19, 20, 21};
 
 // Micro ROS globals
 rcl_subscription_t subscriber;
@@ -82,6 +82,29 @@ enum dshot_cmds {
 };
 
 /**
+ * Initializes any dshot settings upon activation
+ * 
+ * Enable 3D DSHOT, and save settings
+*/
+inline void init_dshot();
+
+/**
+ * Initializes one pio instance on the pi
+ * 
+ * @param instance Pio instance on the pico 
+ * @param pins Pins which should be controlled by this pio
+ * @return A PioProgram struct containing information about the pio program on that state machine
+*/
+struct PioProgram init_pio(int instance, int[] pins);
+
+/**
+ * Reads in encoded motor values from the deck and sends them to the PIO
+ * 
+ * @param msgin Message from motor encoding node on the deck
+*/
+inline void subscription_callback(const void * msgin);
+
+/**
  * Generates a frame given a throttle and telemetry value
  * 
  * Frames are organized in the following 16 bit pattern: SSSSSSSSSSSTCCCC
@@ -93,57 +116,18 @@ enum dshot_cmds {
  * @param telemetry Telemetry value (1 bit), true (1) if telemetry should be used, false (0) if not. Defaults to false
  * @return A 16 bit package of data to send following the parrern SSSSSSSSSSSTCCCC
 */
-inline uint16_t create_packet(uint16_t throttle, bool telemetry=false) {
-    // Shift everything in the backet over by one place then append telem
-    uint16_t data = (throttle << 1) | telemetry;
-    // CRC calculation
-    uint8_t crc = (data ^ (data >> 4) ^ (data >> 8)) & 0x0F;
+inline uint16_t create_packet(uint16_t throttle, bool telemetry=false);
 
-    return (data << 4) | crc;
-}
-
-/**
- * Initializes any dshot settings upon activation
- * 
- * Initialize pio, enable 3D DSHOT, and save settings
- * 
- * @param pio PIO instance
- * @param sm State machine
- * @param offset Location in memory where the assembled program is stored
-*/
-inline void init_dshot(PIO pio, uint sm, uint offset) {
-    uint16_t dshot_3d_packet = create_packet(DSHOT_CMD_3D_MODE_ON);
-    uint16_t save_settings_packet = create_packet(DSHOT_CMD_SAVE_SETTINGS);
-
-    for (int i = 0; i < NUM_MOTORS; i++) {
-        // Enable 3D dshot (packet must be sent 6 times)
-        for (int j = 0; i < 6; j++) {
-            send_packet(GPIO[i], dshot_3d_packet);
-        }
-        // Save settings after changing any (must be sent 6 times and wait 35 ms)
-        for (int j = 0; i < 6; j++) {
-            send_packet(GPIO[i], save_settings_packet);
-        }
-        sleep_ms(35);
-        // Initialize pio program
-        send_dshot_packet_program_init(pio, sm, offset, GPIO[i]);
-    }
-}
 
 /**
  * Sends a high pulse to the specified pin
 */
-inline void high(int pin) {
-    // somehow use the T1H variable to wait that duration
-}
+inline void high(int pin);
 
 /**
  * Sends a low pulse to the specified pin
 */
-inline void low(int pin) {
-    // nanosleep(T0H * 1000); // Is there a better wait function?
-    // somehow use the T0H variable to wait that duration 
-}
+inline void low(int pin);
 
 /**
  * Sends a packet of throttle data to a pin via bit banging
@@ -151,63 +135,15 @@ inline void low(int pin) {
  * @param pin The pin to send values too
  * @param packet 16 bit DSHOT packet formatted in the SSSSSSSSSSSTCCCC pattern
 */
-inline void send_packet(int pin, uint16_t packet) {
-    for (int i = 15; i >= 0; i--) {
-        // Isolate one bit then check if it is one, set to high
-        if ((packet >> i) & 1) {
-            high(pin);
-        } 
-        // Otherwise bit must be zero, set to low
-        else {
-            high(pin);
-        }
-    }
-}
-
-inline void subscription_callback(const void * msgin){
-    // Set the msgin to a Int16MultiArray
-    msg = *((std_msgs__msg__Int16MultiArray *) msgin);
-    // msg should contain throttle values?? I think?
-    set_throttle_values((uint16_t *) msg.data.data);
-}
+inline void send_packet(int pin, uint16_t packet);
 
 /**
  * Sends a ttrrottle value specified in `vals` for each GPIO pin
  * 
  * @param vals An array of length 8 containing throttle values in 3D format
 */
-inline void set_throttle_values(uint16_t vals[]) {
-    for (int i = 0; i < NUM_MOTORS; i++) {
-        // Send a pin number, throttle value from vals array, and start with no telemetry
-        send_packet(GPIO[i], vals[i]);
-    }
-}
+inline void set_throttle_values(uint16_t vals[]);
 
-struct PioProgram {
-    PIO pio;
-    unit offset;
-    unit gpio_pins[NUM_MOTORS_PER_INSTANCE];
-    unit sm[NUM_MOTORS_PER_INSTANCE];
-};
-
-struct PioProgram setup_pio(int instance) {
-    struct PioProgram pio_program;
-
-    // Which PIO instance (there are two PIO instances on the pico)
-    pio_program.pio = instance == 0 ? pio0 : pio1;
-
-    // Load assembled program into PIO instruction memory
-    // 'offset' is assigned the location of the program in memory
-    pio_program.offset = pio_add_program(pio_program.pio, &send_dshot_packet_program);
-
-    // Find unclaimed state mashine
-    // True arg makes the function throw an error if none are avaliable
-    for (int i = 0; i < pio_program) {
-        pio_program.sm[i] = pio_claim_unused_sm(pio_program.pio, true);
-    }
-
-    pio_program.gpio_pins = if instance == 0 ? GPIO_0 : GPIO_1;
-}
 
 int main() {
     const rosidl_message_type_support_t * type_support =
@@ -293,6 +229,87 @@ int main() {
     return 0;
 }
 
+
+inline void init_dshot() {
+    uint16_t dshot_3d_packet = create_packet(DSHOT_CMD_3D_MODE_ON);
+    uint16_t save_settings_packet = create_packet(DSHOT_CMD_SAVE_SETTINGS);
+
+    for (int i = 0; i < NUM_MOTORS; i++) {
+        // Enable 3D dshot (packet must be sent 6 times)
+        for (int j = 0; i < 6; j++) {
+            send_packet(GPIO[i], dshot_3d_packet);
+        }
+        // Save settings after changing any (must be sent 6 times and wait 35 ms)
+        for (int j = 0; i < 6; j++) {
+            send_packet(GPIO[i], save_settings_packet);
+        }
+        sleep_ms(35);
+    }
+}
+
+struct PioProgram init_pio(int instance, int[] pins) {
+    struct PioProgram pio_program;
+
+    // Which PIO instance (there are two PIO instances on the pico)
+    pio_program.pio = instance == 0 ? pio0 : pio1;
+
+    // Load assembled program into PIO instruction memory
+    // 'offset' is assigned the location of the program in memory
+    pio_program.offset = pio_add_program(pio_program.pio, &send_dshot_packet_program);
+
+    // Assign gpio pins with pin parameter
+    for (int i = 0; i < NUM_SM_PIO; i++) {
+        pio_program.gpio_pins[i] = pins[i];
+    }
+
+    for (int i = 0; i < p)
+}
+
+inline void subscription_callback(const void * msgin){
+    // Set the msgin to a Int16MultiArray
+    msg = *((std_msgs__msg__Int16MultiArray *) msgin);
+    // msg should contain throttle values?? I think?
+    // set_throttle_values((uint16_t *) msg.data.data); //FIXME
+}
+
+
+inline uint16_t create_packet(uint16_t throttle, bool telemetry=false) {
+    // Shift everything in the backet over by one place then append telem
+    uint16_t data = (throttle << 1) | telemetry;
+    // CRC calculation
+    uint8_t crc = (data ^ (data >> 4) ^ (data >> 8)) & 0x0F;
+
+    return (data << 4) | crc;
+}
+
+inline void high(int pin) {
+    // somehow use the T1H variable to wait that duration
+}
+
+inline void low(int pin) {
+    // nanosleep(T0H * 1000); // Is there a better wait function?
+    // somehow use the T0H variable to wait that duration 
+}
+
+inline void send_packet(int pin, uint16_t packet) {
+    for (int i = 15; i >= 0; i--) {
+        // Isolate one bit then check if it is one, set to high
+        if ((packet >> i) & 1) {
+            high(pin);
+        } 
+        // Otherwise bit must be zero, set to low
+        else {
+            high(pin);
+        }
+    }
+}
+
+inline void set_throttle_values(uint16_t vals[]) {
+    for (int i = 0; i < NUM_MOTORS; i++) {
+        // Send a pin number, throttle value from vals array, and start with no telemetry
+        send_packet(GPIO[i], vals[i]);
+    }
+}
 
 
 // *************** Useful Sites ***************
