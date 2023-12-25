@@ -22,9 +22,9 @@
 // PIO program
 #include "send_dshot_packet.pio.h"
 
+//\ Each PIO instance has 4 state machines, each state machine will handle four of the motors
 const uint NUM_MOTORS = 8;
-// Each PIO instance has 4 state machines, each state machine will handle four of the motors
-const uint NUM_SM_PIO = 4
+const uint NUM_SM_PIO = 4;
 const uint GPIO_0[NUM_SM_PIO] = {10, 11, 12, 13}; // Pins on the pico we are using for motors
 const uint GPIO_1[NUM_SM_PIO] = {18, 19, 20, 21};
 
@@ -81,6 +81,13 @@ enum dshot_cmds {
     DSHOT_CMD_SIGNAL_LINE_ERPM_PERIOD_TELEMETRY,
 };
 
+struct PioProgram {
+    PIO pio;
+    unit offset;
+    unit gpio_pins[NUM_SM_PIO];
+    unit sm[NUM_SM_PIO];
+}; 
+
 /**
  * Initializes any dshot settings upon activation
  * 
@@ -117,7 +124,6 @@ inline void subscription_callback(const void * msgin);
  * @return A 16 bit package of data to send following the parrern SSSSSSSSSSSTCCCC
 */
 inline uint16_t create_packet(uint16_t throttle, bool telemetry=false);
-
 
 /**
  * Sends a high pulse to the specified pin
@@ -179,24 +185,11 @@ int main() {
     
     rclc_support_init(&support, 0, NULL, &allocator);
 
-    struct PioProgram pio_0 = {pio0, pio_add_program(pio0, &send_dshot_packet_program), GPIO_0};
-    struct PioProgram pio_0 = {pio0, pio_add_program(pio0, &send_dshot_packet_program), GPIO_0};
-
-    // PIO instances (there are two PIO instances on)
-    PIO pio_0 = pio0;
-    PIO pio_0 = pio1;
-
-
-    // Load assembled program into PIO instruction memory
-    // 'offset' is assigned the location of the program in memory
-    uint offset = pio_add_program(pio, &send_dshot_packet_program);
-
-    // Find unclaimed state mashine for PIO
-    // True arg makes the function throw an error if none are avaliable
-    uint sm = pio_claim_unused_sm(pio, true);
+    init_pio(0, GPIO_0);
+    init_pio(1, GPIO_1);
 
     // Initialize dshot
-    init_dshot(pio, sm, offset);
+    init_dshot();
 
     rclc_node_init_default(&node, "pico_node", "", &support);
     
@@ -261,8 +254,6 @@ struct PioProgram init_pio(int instance, int[] pins) {
     for (int i = 0; i < NUM_SM_PIO; i++) {
         pio_program.gpio_pins[i] = pins[i];
     }
-
-    for (int i = 0; i < p)
 }
 
 inline void subscription_callback(const void * msgin){
@@ -271,7 +262,6 @@ inline void subscription_callback(const void * msgin){
     // msg should contain throttle values?? I think?
     // set_throttle_values((uint16_t *) msg.data.data); //FIXME
 }
-
 
 inline uint16_t create_packet(uint16_t throttle, bool telemetry=false) {
     // Shift everything in the backet over by one place then append telem
