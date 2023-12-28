@@ -18,7 +18,6 @@ const uint LED_PIN = 25;
 
 rcl_publisher_t publisher;
 rcl_subscription_t subscriber;
-std_msgs__msg__Int16MultiArray msg;
 const uint GPIO[8] = {10, 11, 12, 13, 18, 19, 20, 21};
 const int NUM_MOTORS = 8;
 const uint8_t CLOCK_DIV = 125;
@@ -54,17 +53,15 @@ void set_duty_cycle(uint16_t levels[]) {
 
 void subscription_callback(const void * msgin)
 {
-  // Process message
-//   rcl_ret_t ret = rcl_publish(&publisher, (const std_msgs__msg__Int32 *)msgin, NULL);
     // Set the msgin to a Int16MultiArray
-    msg = *((std_msgs__msg__Int16MultiArray *) msgin);
-    set_duty_cycle((uint16_t *) msg.data.data);
+    std_msgs__msg__Int16MultiArray *msg = (std_msgs__msg__Int16MultiArray *) msgin;
+    set_duty_cycle((uint16_t *) msg->data.data);
 }
 
 int main()
 {
     const rosidl_message_type_support_t * type_support =
-        ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32);
+        ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int16MultiArray);
 
     rmw_uros_set_custom_transport(
 		true,
@@ -97,24 +94,44 @@ int main()
         // Unreachable agent, exiting program.
         return ret;
     }
+
     config_pwm(3000);
-    
 
     rclc_support_init(&support, 0, NULL, &allocator);
-
-    rclc_node_init_default(&node, "pico_node", "", &support);
     
-    rclc_subscription_init_default(
+    rclc_node_init_default(&node, "pico_node", "", &support);
+
+    // Define msg
+    std_msgs__msg__Int16MultiArray msg;
+
+    // Define msg data Int16 Sequence
+    rosidl_runtime_c__int16__Sequence msg_data;
+    msg_data.size = 0;
+    msg_data.capacity = 8;
+    int16_t msg_data_data[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+    msg_data.data = msg_data_data;
+
+    msg.data = msg_data;
+
+    // Define msg layout MultiArray Layout
+
+    std_msgs__msg__MultiArrayLayout msg_layout;
+
+    std_msgs__msg__MultiArrayDimension__Sequence msg_layout_dim;
+    msg_layout.dim = msg_layout_dim;
+    msg_layout.data_offset = 0;
+    
+    msg.layout = msg_layout;
+    
+
+
+
+
+    ret = rclc_subscription_init_default(
         &subscriber, 
         &node,
         type_support, 
         "pico_in");
-
-    // rclc_publisher_init_default(
-    //     &publisher,
-    //     &node,
-    //     type_support,
-    //     "pico_out");
 
     rclc_executor_init(&executor, &support.context, 1, &allocator);
     rclc_executor_add_subscription(
@@ -125,6 +142,7 @@ int main()
         ON_NEW_DATA);
 
     gpio_put(LED_PIN, 1);
+
 
     while (true)
     {
