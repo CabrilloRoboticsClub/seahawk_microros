@@ -5,24 +5,64 @@
 #include <rclc/rclc.h>
 #include <rclc/executor.h>
 #include <std_msgs/msg/int32.h>
+#include <std_msgs/msg/int16_multi_array.h>
 #include <rmw_microros/rmw_microros.h>
 
 #include "pico/stdlib.h"
 #include "pico_uart_transports.h"
+#include "hardware/pio.h"
+#include "hardware/pwm.h"
+
 
 const uint LED_PIN = 25;
 
 rcl_publisher_t publisher;
-std_msgs__msg__Int32 msg;
+rcl_subscription_t subscriber;
+const uint GPIO[8] = {10, 11, 12, 13, 18, 19, 20, 21};
+const int NUM_MOTORS = 8;
+const uint8_t CLOCK_DIV = 125;
 
-void timer_callback(rcl_timer_t *timer, int64_t last_call_time)
+// configures the pwm generators
+void config_pwm(uint16_t wrap) {
+    for (int i = 0; i < NUM_MOTORS; i++) {
+      // Sets all GPIO pins to use PWM
+      gpio_set_function(GPIO[i], GPIO_FUNC_PWM);
+      // Sets the wrap for each slice
+      pwm_set_wrap(pwm_gpio_to_slice_num(GPIO[i]), wrap);
+      /*
+       * If phase correct is set to false the counter
+       * will reset to 0 after reaching the level,
+       * otherwise it will decrease down to 0
+       */
+      pwm_set_phase_correct(pwm_gpio_to_slice_num(GPIO[i]), false);
+      // Set clock division
+      pwm_set_clkdiv_int_frac(pwm_gpio_to_slice_num(GPIO[i]), CLOCK_DIV, 0);
+      // Set pins to 1500microseconds for neutral
+      pwm_set_gpio_level(GPIO[i], 1500);
+      // Enable PWM
+      pwm_set_enabled(pwm_gpio_to_slice_num(GPIO[i]), true);
+    }
+}
+// Sets all of the motors to the given levels
+void set_duty_cycle(uint16_t levels[]) {    
+    for (int i = 0; i < NUM_MOTORS; i++) {
+        pwm_set_gpio_level(GPIO[i], levels[i]);
+    }
+}
+
+
+void subscription_callback(const void * msgin)
 {
-    rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL);
-    msg.data++;
+    // Set the msgin to a Int16MultiArray
+    std_msgs__msg__Int16MultiArray *msg = (std_msgs__msg__Int16MultiArray *) msgin;
+    set_duty_cycle((uint16_t *) msg->data.data);
 }
 
 int main()
 {
+    const rosidl_message_type_support_t * type_support =
+        ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int16MultiArray);
+
     rmw_uros_set_custom_transport(
 		true,
 		NULL,
@@ -55,27 +95,51 @@ int main()
         return ret;
     }
 
+    config_pwm(3000);
+
     rclc_support_init(&support, 0, NULL, &allocator);
+    
+    rclc_node_init_default(&node, "pwm_values", "", &support);
 
-    rclc_node_init_default(&node, "pico_node", "", &support);
-    rclc_publisher_init_default(
-        &publisher,
+    // Define msg
+    std_msgs__msg__Int16MultiArray msg;
+
+    // Define msg data Int16 Sequence
+    rosidl_runtime_c__int16__Sequence msg_data;
+    msg_data.size = 0;
+    msg_data.capacity = 8;
+    int16_t msg_data_data[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+    msg_data.data = msg_data_data;
+
+    msg.data = msg_data;
+
+    // Define msg layout MultiArray Layout
+
+    std_msgs__msg__MultiArrayLayout msg_layout;
+
+    std_msgs__msg__MultiArrayDimension__Sequence msg_layout_dim;
+    msg_layout.dim = msg_layout_dim;
+    msg_layout.data_offset = 0;
+    
+    msg.layout = msg_layout;
+
+    ret = rclc_subscription_init_default(
+        &subscriber, 
         &node,
-        ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
-        "pico_publisher");
-
-    rclc_timer_init_default(
-        &timer,
-        &support,
-        RCL_MS_TO_NS(1000),
-        timer_callback);
+        type_support, 
+        "pico_in");
 
     rclc_executor_init(&executor, &support.context, 1, &allocator);
-    rclc_executor_add_timer(&executor, &timer);
+    rclc_executor_add_subscription(
+        &executor, 
+        &subscriber, 
+        &msg,
+        &subscription_callback, 
+        ON_NEW_DATA);
 
     gpio_put(LED_PIN, 1);
 
-    msg.data = 0;
+
     while (true)
     {
         rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));

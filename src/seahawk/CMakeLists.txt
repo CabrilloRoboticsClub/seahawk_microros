@@ -17,6 +17,8 @@ add_executable(seahawk
 target_link_libraries(seahawk
     pico_stdlib
     microros
+    hardware_pwm
+    hardware_pio
 )
 
 target_include_directories(seahawk PUBLIC
@@ -27,8 +29,8 @@ SET(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -ffunction-sections -fdata-sections")
 SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -ffunction-sections -fdata-sections")
 
 # Configure Pico
-pico_enable_stdio_usb(seahawk 1)
-pico_enable_stdio_uart(seahawk 0)
+pico_enable_stdio_usb(seahawk 0)
+pico_enable_stdio_uart(seahawk 1)
 add_compile_definitions(PICO_UART_ENABLE_CRLF_SUPPORT=0)
 add_compile_definitions(PICO_STDIO_ENABLE_CRLF_SUPPORT=0)
 add_compile_definitions(PICO_STDIO_DEFAULT_CRLF=0)

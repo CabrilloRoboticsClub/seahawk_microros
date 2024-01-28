@@ -5,4 +5,10 @@
     },
     "git.detectSubmodules": false,
     "cmake.sourceDirectory": "${workspaceFolder}/src/seahawk",
+    "files.associations": {
+        "stdio.h": "c",
+        "rmw_microros.h": "c",
+        "int32.h": "c",
+        "int16_multi_array.h": "c"
+    },
 }
