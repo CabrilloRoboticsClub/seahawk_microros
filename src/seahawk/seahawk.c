@@ -99,7 +99,7 @@ int main()
 
     rclc_support_init(&support, 0, NULL, &allocator);
     
-    rclc_node_init_default(&node, "pico_node", "", &support);
+    rclc_node_init_default(&node, "pwm_values", "", &support);
 
     // Define msg
     std_msgs__msg__Int16MultiArray msg;
@@ -122,10 +122,6 @@ int main()
     msg_layout.data_offset = 0;
     
     msg.layout = msg_layout;
-    
-
-
-
 
     ret = rclc_subscription_init_default(
         &subscriber, 
