@@ -13,6 +13,12 @@ link_directories($ENV{MICRO_ROS_RPI_PICO_PATH}/libmicroros)
 add_executable(seahawk
     seahawk.c
     pico_uart_transport.c
+    sh2.c
+    sh2_util.c
+    shtp.c
+    sh2_SensorValue.c
+    Adafruit_Sensor.cpp
+    Adafruit_BNO08x.cpp
 )
 target_link_libraries(seahawk
     pico_stdlib
