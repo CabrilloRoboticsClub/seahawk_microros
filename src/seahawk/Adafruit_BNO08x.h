@@ -20,7 +20,6 @@
 #include "sh2.h"
 #include "sh2_SensorValue.h"
 #include "sh2_err.h"
-#include "Adafruit_Sensor.h"
 
 #define BNO08x_I2CADDR_DEFAULT 0x4A ///< The default I2C address
 

@@ -17,7 +17,6 @@ add_executable(seahawk
     sh2_util.c
     shtp.c
     sh2_SensorValue.c
-    Adafruit_Sensor.cpp
     Adafruit_BNO08x.cpp
 )
 target_link_libraries(seahawk
