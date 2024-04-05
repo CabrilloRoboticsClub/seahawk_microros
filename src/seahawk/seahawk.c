@@ -15,6 +15,9 @@
 
 
 const uint LED_PIN = 25;
+const uint FAN_PIN = 22;
+
+// Tested: 22, 32, 34 (not working)
 
 rcl_publisher_t publisher;
 rcl_subscription_t subscriber;
@@ -74,6 +77,11 @@ int main()
 
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
+
+    gpio_init(FAN_PIN);
+    gpio_set_dir(FAN_PIN, GPIO_OUT);
+
+    gpio_put(FAN_PIN, 1);
 
     rcl_timer_t timer;
     rcl_node_t node;
