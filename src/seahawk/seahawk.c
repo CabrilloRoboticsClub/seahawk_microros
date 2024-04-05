@@ -18,7 +18,7 @@ const uint LED_PIN = 25;
 
 rcl_publisher_t publisher;
 rcl_subscription_t subscriber;
-const uint GPIO[8] = {21, 13, 19, 11, 20, 12, 10, 18};
+const uint GPIO[8] = {20, 13, 19, 11, 21, 12, 18, 10};
 const int NUM_MOTORS = 8;
 const uint8_t CLOCK_DIV = 125;
 
