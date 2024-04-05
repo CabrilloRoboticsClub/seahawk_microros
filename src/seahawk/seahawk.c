@@ -99,7 +99,7 @@ int main()
 
     rclc_support_init(&support, 0, NULL, &allocator);
     
-    rclc_node_init_default(&node, "pwm_values", "", &support);
+    rclc_node_init_default(&node, "pico_node", "", &support);
 
     // Define msg
     std_msgs__msg__Int16MultiArray msg;
@@ -127,7 +127,7 @@ int main()
         &subscriber, 
         &node,
         type_support, 
-        "pico_in");
+        "pwm_values");
 
     rclc_executor_init(&executor, &support.context, 1, &allocator);
     rclc_executor_add_subscription(
