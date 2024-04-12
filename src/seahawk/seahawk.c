@@ -13,54 +13,55 @@
 #include "hardware/pio.h"
 #include "hardware/pwm.h"
 
-
-const uint LED_PIN = 25;
-const uint FAN_PIN = 17;
-
 rcl_publisher_t publisher;
 rcl_subscription_t subscriber;
 const uint GPIO[8] = {20, 13, 19, 11, 21, 12, 18, 10};
+const uint LED_PIN = 25;
+const uint FAN_PIN = 17;
 const int NUM_MOTORS = 8;
 const uint8_t CLOCK_DIV = 125;
 
-// configures the pwm generators
+/**
+ * Configures the pwm generators.
+*/
 void config_pwm(uint16_t wrap) {
     for (int i = 0; i < NUM_MOTORS; i++) {
       // Sets all GPIO pins to use PWM
-      gpio_set_function(GPIO[i], GPIO_FUNC_PWM);
-      // Sets the wrap for each slice
-      pwm_set_wrap(pwm_gpio_to_slice_num(GPIO[i]), wrap);
-      /*
-       * If phase correct is set to false the counter
-       * will reset to 0 after reaching the level,
-       * otherwise it will decrease down to 0
-       */
-      pwm_set_phase_correct(pwm_gpio_to_slice_num(GPIO[i]), false);
-      // Set clock division
-      pwm_set_clkdiv_int_frac(pwm_gpio_to_slice_num(GPIO[i]), CLOCK_DIV, 0);
-      // Set pins to 1500microseconds for neutral
-      pwm_set_gpio_level(GPIO[i], 1500);
-      // Enable PWM
-      pwm_set_enabled(pwm_gpio_to_slice_num(GPIO[i]), true);
+        gpio_set_function(GPIO[i], GPIO_FUNC_PWM);
+        // Sets the wrap for each slice
+        pwm_set_wrap(pwm_gpio_to_slice_num(GPIO[i]), wrap);
+        // If phase correct is set to false the counter
+        // will reset to 0 after reaching the level,
+        // otherwise it will decrease down to 0
+        pwm_set_phase_correct(pwm_gpio_to_slice_num(GPIO[i]), false);
+        // Set clock division
+        pwm_set_clkdiv_int_frac(pwm_gpio_to_slice_num(GPIO[i]), CLOCK_DIV, 0);
+        // Set pins to 1500microseconds for neutral
+        pwm_set_gpio_level(GPIO[i], 1500);
+        // Enable PWM
+        pwm_set_enabled(pwm_gpio_to_slice_num(GPIO[i]), true);
     }
 }
-// Sets all of the motors to the given levels
+
+/**
+ * Sets all of the motors to the given levels
+*/ 
 void set_duty_cycle(uint16_t levels[]) {    
     for (int i = 0; i < NUM_MOTORS; i++) {
         pwm_set_gpio_level(GPIO[i], levels[i]);
     }
 }
 
-
-void subscription_callback(const void * msgin)
-{
+/**
+ * Subscription call back for messages
+*/
+void subscription_callback(const void* msgin) {
     // Set the msgin to a Int16MultiArray
     std_msgs__msg__Int16MultiArray *msg = (std_msgs__msg__Int16MultiArray *) msgin;
     set_duty_cycle((uint16_t *) msg->data.data);
 }
 
-int main()
-{
+int main() {
     const rosidl_message_type_support_t * type_support =
         ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int16MultiArray);
 
@@ -73,12 +74,14 @@ int main()
 		pico_serial_transport_read
 	);
 
+    // Turn on LED
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
+    gpio_put(LED_PIN, 1);
 
+    // Turn on fan
     gpio_init(FAN_PIN);
     gpio_set_dir(FAN_PIN, GPIO_OUT);
-
     gpio_put(FAN_PIN, 1);
 
     rcl_timer_t timer;
@@ -95,8 +98,7 @@ int main()
 
     rcl_ret_t ret = rmw_uros_ping_agent(timeout_ms, attempts);
 
-    if (ret != RCL_RET_OK)
-    {
+    if (ret != RCL_RET_OK) {
         // Unreachable agent, exiting program.
         return ret;
     }
@@ -143,11 +145,8 @@ int main()
         &subscription_callback, 
         ON_NEW_DATA);
 
-    gpio_put(LED_PIN, 1);
 
-
-    while (true)
-    {
+    while (true) {
         rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
     }
     return 0;
