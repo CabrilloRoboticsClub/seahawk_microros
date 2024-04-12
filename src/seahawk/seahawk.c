@@ -15,9 +15,7 @@
 
 
 const uint LED_PIN = 25;
-const uint FAN_PIN = 22;
-
-// Tested: 22, 32, 34 (not working)
+const uint FAN_PIN = 17;
 
 rcl_publisher_t publisher;
 rcl_subscription_t subscriber;
