@@ -15,7 +15,7 @@
 
 rcl_publisher_t publisher;
 rcl_subscription_t subscriber;
-const uint GPIO[8] = {20, 13, 19, 11, 21, 12, 18, 10};
+const uint GPIO[8] = {18, 13, 21, 11, 19, 12, 20, 10};
 const uint LED_PIN = 25;
 const uint FAN_PIN = 17;
 const int NUM_MOTORS = 8;
