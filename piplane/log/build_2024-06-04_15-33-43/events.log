@@ -1,0 +1,224 @@
+[0.000000] (-) TimerEvent: {}
+[0.000152] (piplane) JobQueued: {'identifier': 'piplane', 'dependencies': OrderedDict()}
+[0.000666] (piplane) JobStarted: {'identifier': 'piplane'}
+[0.014671] (piplane) JobProgress: {'identifier': 'piplane', 'progress': 'cmake'}
+[0.014872] (piplane) Command: {'cmd': ['/usr/bin/cmake', '/home/taschnell/piplane-microros/src/piplane', '-DCMAKE_INSTALL_PREFIX=/home/taschnell/piplane-microros/src/piplane/install/piplane'], 'cwd': '/home/taschnell/piplane-microros/src/piplane/build/piplane', 'env': OrderedDict({'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'taschnell', 'GIO_MODULE_DIR': '/home/taschnell/snap/code/common/.cache/gio-modules', 'XDG_SESSION_TYPE': 'wayland', 'GIT_ASKPASS': '/snap/code/159/usr/share/code/resources/app/extensions/git/dist/askpass.sh', 'GTK_EXE_PREFIX_VSCODE_SNAP_ORIG': '', 'GDK_BACKEND_VSCODE_SNAP_ORIG': '', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/taschnell', 'CHROME_DESKTOP': 'code-url-handler.desktop', 'LOCPATH_VSCODE_SNAP_ORIG': '', 'OLDPWD': '/home/taschnell/piplane-microros/src/piplane/build', 'TERM_PROGRAM_VERSION': '1.89.1', 'DESKTOP_SESSION': 'ubuntu', 'GTK_PATH': '/snap/code/159/usr/lib/x86_64-linux-gnu/gtk-3.0', 'GTK_IM_MODULE_FILE': '/home/taschnell/snap/code/common/.cache/immodules/immodules.cache', 'GIO_LAUNCHED_DESKTOP_FILE': '/var/lib/snapd/desktop/applications/code_code.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'GSETTINGS_SCHEMA_DIR_VSCODE_SNAP_ORIG': '', 'VSCODE_GIT_ASKPASS_MAIN': '/snap/code/159/usr/share/code/resources/app/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/snap/code/159/usr/share/code/code', 'MANAGERPID': '2608', 'SYSTEMD_EXEC_PID': '2906', 'IM_CONFIG_CHECK_ENV': '1', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3679', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'PICO_TOOLCHAIN_PATH': '/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'taschnell', 'JOURNAL_STREAM': '8:30273', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@wayland.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'XDG_DATA_DIRS_VSCODE_SNAP_ORIG': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'USERNAME': 'taschnell', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/taschnell-laptop-ubuntu:@/tmp/.ICE-unix/2862,unix/taschnell-laptop-ubuntu:/tmp/.ICE-unix/2862', 'GTK_EXE_PREFIX': '/snap/code/159/usr', 'INVOCATION_ID': '8b93aee3d62b4f2ab05cb1b897ccdd15', 'XDG_MENU_PREFIX': 'gnome-', 'BAMF_DESKTOP_FILE_HINT': '/var/lib/snapd/desktop/applications/code_code.desktop', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'x11', 'DISPLAY': ':0', 'LOCPATH': '/snap/code/159/usr/lib/locale', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'Unity', 'GIO_MODULE_DIR_VSCODE_SNAP_ORIG': '', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.CB1GO2', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-288d39a44c.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'GSETTINGS_SCHEMA_DIR': '/home/taschnell/snap/code/159/.local/share/glib-2.0/schemas', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'ORIGINAL_XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GTK_PATH_VSCODE_SNAP_ORIG': '', 'GTK_IM_MODULE_FILE_VSCODE_SNAP_ORIG': '', 'GJS_DEBUG_OUTPUT': 'stderr', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/taschnell/piplane-microros/src/piplane/build/piplane', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'PICO_SDK_PATH': '/home/taschnell/pico-sdk', 'XDG_DATA_DIRS': '/home/taschnell/snap/code/159/.local/share:/home/taschnell/snap/code/159:/snap/code/159/usr/share:/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor'}), 'shell': False}
+[0.029056] (piplane) StderrLine: {'line': b"\x1b[0mUsing PICO_SDK_PATH from environment ('/home/taschnell/pico-sdk')\x1b[0m\n"}
+[0.029376] (piplane) StderrLine: {'line': b'\x1b[0mPICO_SDK_PATH is /home/taschnell/pico-sdk\x1b[0m\n'}
+[0.029534] (piplane) StderrLine: {'line': b'\x1b[0mDefaulting PICO_PLATFORM to rp2040 since not specified.\x1b[0m\n'}
+[0.029782] (piplane) StdoutLine: {'line': b"-- Defaulting build type to 'Release' since not specified.\n"}
+[0.029904] (piplane) StderrLine: {'line': b'\x1b[0mDefaulting PICO platform compiler to pico_arm_gcc since not specified.\x1b[0m\n'}
+[0.029995] (piplane) StderrLine: {'line': b'\x1b[0mPICO compiler is pico_arm_gcc\x1b[0m\n'}
+[0.099801] (-) TimerEvent: {}
+[0.113583] (piplane) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.3.1\n'}
+[0.199918] (-) TimerEvent: {}
+[0.221638] (piplane) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.3.1\n'}
+[0.235988] (piplane) StdoutLine: {'line': b'-- The ASM compiler identification is GNU\n'}
+[0.239283] (piplane) StdoutLine: {'line': b'-- Found assembler: /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/arm-none-eabi-gcc\n'}
+[0.254706] (piplane) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.300031] (-) TimerEvent: {}
+[0.341450] (piplane) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.352778] (piplane) StdoutLine: {'line': b'-- Check for working C compiler: /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/arm-none-eabi-gcc - skipped\n'}
+[0.353112] (piplane) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.353574] (piplane) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.371891] (piplane) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.400183] (-) TimerEvent: {}
+[0.484837] (piplane) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.496973] (piplane) StdoutLine: {'line': b'-- Check for working CXX compiler: /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/arm-none-eabi-g++ - skipped\n'}
+[0.497487] (piplane) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.497925] (piplane) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.500253] (-) TimerEvent: {}
+[0.514573] (piplane) StderrLine: {'line': b'\x1b[0mBuild type is Release\x1b[0m\n'}
+[0.516722] (piplane) StderrLine: {'line': b'\x1b[0mDefaulting PICO target board to pico since not specified.\x1b[0m\n'}
+[0.517059] (piplane) StderrLine: {'line': b'\x1b[0mUsing board configuration from /home/taschnell/pico-sdk/src/boards/include/boards/pico.h\x1b[0m\n'}
+[0.600361] (-) TimerEvent: {}
+[0.644117] (piplane) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter \n'}
+[0.655890] (piplane) StderrLine: {'line': b'\x1b[0mTinyUSB available at /home/taschnell/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040; enabling build support for USB.\x1b[0m\n'}
+[0.679305] (piplane) StderrLine: {'line': b'\x1b[0mBTstack available at /home/taschnell/pico-sdk/lib/btstack\x1b[0m\n'}
+[0.679963] (piplane) StderrLine: {'line': b'\x1b[0mcyw43-driver available at /home/taschnell/pico-sdk/lib/cyw43-driver\x1b[0m\n'}
+[0.683988] (piplane) StderrLine: {'line': b'\x1b[0mPico W Bluetooth build support available.\x1b[0m\n'}
+[0.684433] (piplane) StderrLine: {'line': b'\x1b[0mlwIP available at /home/taschnell/pico-sdk/lib/lwip\x1b[0m\n'}
+[0.685693] (piplane) StderrLine: {'line': b'\x1b[0mmbedtls available at /home/taschnell/pico-sdk/lib/mbedtls\x1b[0m\n'}
+[0.700461] (-) TimerEvent: {}
+[0.768897] (piplane) StdoutLine: {'line': b'-- Configuring done (0.7s)\n'}
+[0.798902] (piplane) StdoutLine: {'line': b'-- Generating done (0.0s)\n'}
+[0.800562] (-) TimerEvent: {}
+[0.801998] (piplane) StdoutLine: {'line': b'-- Build files have been written to: /home/taschnell/piplane-microros/src/piplane/build/piplane\n'}
+[0.810757] (piplane) CommandEnded: {'returncode': 0}
+[0.811242] (piplane) JobProgress: {'identifier': 'piplane', 'progress': 'build'}
+[0.812293] (piplane) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/taschnell/piplane-microros/src/piplane/build/piplane', '--', '-j22', '-l22'], 'cwd': '/home/taschnell/piplane-microros/src/piplane/build/piplane', 'env': OrderedDict({'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'taschnell', 'GIO_MODULE_DIR': '/home/taschnell/snap/code/common/.cache/gio-modules', 'XDG_SESSION_TYPE': 'wayland', 'GIT_ASKPASS': '/snap/code/159/usr/share/code/resources/app/extensions/git/dist/askpass.sh', 'GTK_EXE_PREFIX_VSCODE_SNAP_ORIG': '', 'GDK_BACKEND_VSCODE_SNAP_ORIG': '', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/taschnell', 'CHROME_DESKTOP': 'code-url-handler.desktop', 'LOCPATH_VSCODE_SNAP_ORIG': '', 'OLDPWD': '/home/taschnell/piplane-microros/src/piplane/build', 'TERM_PROGRAM_VERSION': '1.89.1', 'DESKTOP_SESSION': 'ubuntu', 'GTK_PATH': '/snap/code/159/usr/lib/x86_64-linux-gnu/gtk-3.0', 'GTK_IM_MODULE_FILE': '/home/taschnell/snap/code/common/.cache/immodules/immodules.cache', 'GIO_LAUNCHED_DESKTOP_FILE': '/var/lib/snapd/desktop/applications/code_code.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'GSETTINGS_SCHEMA_DIR_VSCODE_SNAP_ORIG': '', 'VSCODE_GIT_ASKPASS_MAIN': '/snap/code/159/usr/share/code/resources/app/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/snap/code/159/usr/share/code/code', 'MANAGERPID': '2608', 'SYSTEMD_EXEC_PID': '2906', 'IM_CONFIG_CHECK_ENV': '1', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '3679', 'DEBUGINFOD_URLS': 'https://debuginfod.ubuntu.com', 'PICO_TOOLCHAIN_PATH': '/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'taschnell', 'JOURNAL_STREAM': '8:30273', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@wayland.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'XDG_DATA_DIRS_VSCODE_SNAP_ORIG': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'USERNAME': 'taschnell', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/taschnell-laptop-ubuntu:@/tmp/.ICE-unix/2862,unix/taschnell-laptop-ubuntu:/tmp/.ICE-unix/2862', 'GTK_EXE_PREFIX': '/snap/code/159/usr', 'INVOCATION_ID': '8b93aee3d62b4f2ab05cb1b897ccdd15', 'XDG_MENU_PREFIX': 'gnome-', 'BAMF_DESKTOP_FILE_HINT': '/var/lib/snapd/desktop/applications/code_code.desktop', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'x11', 'DISPLAY': ':0', 'LOCPATH': '/snap/code/159/usr/lib/locale', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'Unity', 'GIO_MODULE_DIR_VSCODE_SNAP_ORIG': '', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.CB1GO2', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-288d39a44c.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'GSETTINGS_SCHEMA_DIR': '/home/taschnell/snap/code/159/.local/share/glib-2.0/schemas', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'ORIGINAL_XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GTK_PATH_VSCODE_SNAP_ORIG': '', 'GTK_IM_MODULE_FILE_VSCODE_SNAP_ORIG': '', 'GJS_DEBUG_OUTPUT': 'stderr', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/taschnell/piplane-microros/src/piplane/build/piplane', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'PICO_SDK_PATH': '/home/taschnell/pico-sdk', 'XDG_DATA_DIRS': '/home/taschnell/snap/code/159/.local/share:/home/taschnell/snap/code/159:/snap/code/159/usr/share:/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor'}), 'shell': False}
+[0.896525] (piplane) StdoutLine: {'line': b"[  1%] \x1b[34m\x1b[1mCreating directories for 'PioasmBuild'\x1b[0m\n"}
+[0.900620] (-) TimerEvent: {}
+[0.903304] (piplane) StdoutLine: {'line': b'[  2%] \x1b[32mBuilding ASM object pico-sdk/src/rp2_common/boot_stage2/CMakeFiles/bs2_default.dir/compile_time_choice.S.obj\x1b[0m\n'}
+[0.906433] (piplane) StdoutLine: {'line': b"[  4%] \x1b[34m\x1b[1mCreating directories for 'ELF2UF2Build'\x1b[0m\n"}
+[0.932145] (piplane) StdoutLine: {'line': b'[  5%] \x1b[32m\x1b[1mLinking ASM executable bs2_default.elf\x1b[0m\n'}
+[0.934198] (piplane) StdoutLine: {'line': b"[  7%] \x1b[34m\x1b[1mNo download step for 'PioasmBuild'\x1b[0m\n"}
+[0.939033] (piplane) StdoutLine: {'line': b"[  8%] \x1b[34m\x1b[1mNo download step for 'ELF2UF2Build'\x1b[0m\n"}
+[0.961131] (piplane) StdoutLine: {'line': b'[  8%] Built target bs2_default\n'}
+[0.961908] (piplane) StdoutLine: {'line': b"[  9%] \x1b[34m\x1b[1mNo update step for 'PioasmBuild'\x1b[0m\n"}
+[0.968560] (piplane) StdoutLine: {'line': b"[ 11%] \x1b[34m\x1b[1mNo update step for 'ELF2UF2Build'\x1b[0m\n"}
+[0.983846] (piplane) StdoutLine: {'line': b'[ 12%] \x1b[34m\x1b[1mGenerating bs2_default.bin\x1b[0m\n'}
+[0.990962] (piplane) StdoutLine: {'line': b"[ 14%] \x1b[34m\x1b[1mNo patch step for 'PioasmBuild'\x1b[0m\n"}
+[0.993272] (piplane) StdoutLine: {'line': b"[ 15%] \x1b[34m\x1b[1mNo patch step for 'ELF2UF2Build'\x1b[0m\n"}
+[0.994815] (piplane) StdoutLine: {'line': b'[ 16%] \x1b[34m\x1b[1mGenerating bs2_default_padded_checksummed.S\x1b[0m\n'}
+[1.000715] (-) TimerEvent: {}
+[1.022176] (piplane) StdoutLine: {'line': b"[ 18%] \x1b[34m\x1b[1mPerforming configure step for 'ELF2UF2Build'\x1b[0m\n"}
+[1.027281] (piplane) StdoutLine: {'line': b"[ 19%] \x1b[34m\x1b[1mPerforming configure step for 'PioasmBuild'\x1b[0m\n"}
+[1.036582] (piplane) StdoutLine: {'line': b'loading initial cache file /home/taschnell/piplane-microros/src/piplane/build/piplane/pico-sdk/src/rp2_common/tinyusb/pioasm/tmp/PioasmBuild-cache-Release.cmake\n'}
+[1.037000] (piplane) StderrLine: {'line': b'\x1b[0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):\n'}
+[1.037105] (piplane) StderrLine: {'line': b'  Compatibility with CMake < 3.5 will be removed from a future version of\n'}
+[1.037194] (piplane) StderrLine: {'line': b'  CMake.\n'}
+[1.037278] (piplane) StderrLine: {'line': b'\n'}
+[1.037388] (piplane) StderrLine: {'line': b'  Update the VERSION argument <min> value or use a ...<max> suffix to tell\n'}
+[1.037470] (piplane) StderrLine: {'line': b'  CMake that the project does not need compatibility with older versions.\n'}
+[1.037551] (piplane) StderrLine: {'line': b'\n'}
+[1.037701] (piplane) StderrLine: {'line': b'\x1b[0m\n'}
+[1.037779] (piplane) StdoutLine: {'line': b'[ 19%] Built target bs2_default_padded_checksummed_asm\n'}
+[1.097392] (piplane) StdoutLine: {'line': b'-- The C compiler identification is GNU 13.2.0\n'}
+[1.100809] (-) TimerEvent: {}
+[1.108354] (piplane) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 13.2.0\n'}
+[1.131682] (piplane) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.156853] (piplane) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 13.2.0\n'}
+[1.183711] (piplane) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[1.200928] (-) TimerEvent: {}
+[1.243420] (piplane) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.255756] (piplane) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[1.256038] (piplane) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.256670] (piplane) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.257645] (piplane) StdoutLine: {'line': b'-- Configuring done (0.2s)\n'}
+[1.260628] (piplane) StdoutLine: {'line': b'-- Generating done (0.0s)\n'}
+[1.261132] (piplane) StdoutLine: {'line': b'-- Build files have been written to: /home/taschnell/piplane-microros/src/piplane/build/piplane/pioasm\n'}
+[1.287438] (piplane) StdoutLine: {'line': b"[ 21%] \x1b[34m\x1b[1mPerforming build step for 'PioasmBuild'\x1b[0m\n"}
+[1.294619] (piplane) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.301029] (-) TimerEvent: {}
+[1.307020] (piplane) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[1.307269] (piplane) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.307949] (piplane) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.321298] (piplane) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.339515] (piplane) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding CXX object CMakeFiles/pioasm.dir/main.cpp.o\x1b[0m\n'}
+[1.339815] (piplane) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding CXX object CMakeFiles/pioasm.dir/pio_assembler.cpp.o\x1b[0m\n'}
+[1.339925] (piplane) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding CXX object CMakeFiles/pioasm.dir/gen/lexer.cpp.o\x1b[0m\n'}
+[1.340004] (piplane) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/pioasm.dir/pio_disassembler.cpp.o\x1b[0m\n'}
+[1.340078] (piplane) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/pioasm.dir/c_sdk_output.cpp.o\x1b[0m\n'}
+[1.340147] (piplane) StdoutLine: {'line': b'[ 70%] \x1b[32mBuilding CXX object CMakeFiles/pioasm.dir/python_output.cpp.o\x1b[0m\n'}
+[1.340214] (piplane) StdoutLine: {'line': b'[ 70%] \x1b[32mBuilding CXX object CMakeFiles/pioasm.dir/gen/parser.cpp.o\x1b[0m\n'}
+[1.340350] (piplane) StdoutLine: {'line': b'[ 80%] \x1b[32mBuilding CXX object CMakeFiles/pioasm.dir/hex_output.cpp.o\x1b[0m\n'}
+[1.340538] (piplane) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding CXX object CMakeFiles/pioasm.dir/ada_output.cpp.o\x1b[0m\n'}
+[1.401160] (-) TimerEvent: {}
+[1.434032] (piplane) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.445598] (piplane) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[1.445908] (piplane) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.446483] (piplane) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.448022] (piplane) StdoutLine: {'line': b'-- Configuring done (0.4s)\n'}
+[1.450783] (piplane) StdoutLine: {'line': b'-- Generating done (0.0s)\n'}
+[1.451519] (piplane) StdoutLine: {'line': b'-- Build files have been written to: /home/taschnell/piplane-microros/src/piplane/build/piplane/elf2uf2\n'}
+[1.473960] (piplane) StdoutLine: {'line': b"[ 22%] \x1b[34m\x1b[1mPerforming build step for 'ELF2UF2Build'\x1b[0m\n"}
+[1.501282] (-) TimerEvent: {}
+[1.523375] (piplane) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/elf2uf2.dir/main.cpp.o\x1b[0m\n'}
+[1.601464] (-) TimerEvent: {}
+[1.701853] (-) TimerEvent: {}
+[1.802239] (-) TimerEvent: {}
+[1.902611] (-) TimerEvent: {}
+[2.002953] (-) TimerEvent: {}
+[2.005088] (piplane) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable elf2uf2\x1b[0m\n'}
+[2.091100] (piplane) StdoutLine: {'line': b'[100%] Built target elf2uf2\n'}
+[2.103082] (-) TimerEvent: {}
+[2.120558] (piplane) StdoutLine: {'line': b"[ 23%] \x1b[34m\x1b[1mNo install step for 'ELF2UF2Build'\x1b[0m\n"}
+[2.141252] (piplane) StdoutLine: {'line': b"[ 25%] \x1b[34m\x1b[1mCompleted 'ELF2UF2Build'\x1b[0m\n"}
+[2.179796] (piplane) StdoutLine: {'line': b'[ 25%] Built target ELF2UF2Build\n'}
+[2.203232] (-) TimerEvent: {}
+[2.219012] (piplane) StdoutLine: {'line': b'[ 26%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/dshot.c.obj\x1b[0m\n'}
+[2.219295] (piplane) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/pio_loader.c.obj\x1b[0m\n'}
+[2.222919] (piplane) StdoutLine: {'line': b'[ 30%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj\x1b[0m\n'}
+[2.223132] (piplane) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/pico_uart_transport.c.obj\x1b[0m\n'}
+[2.223196] (piplane) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_sync/lock_core.c.obj\x1b[0m\n'}
+[2.223249] (piplane) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_sync/critical_section.c.obj\x1b[0m\n'}
+[2.223299] (piplane) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj\x1b[0m\n'}
+[2.223360] (piplane) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/piplane.c.obj\x1b[0m\n'}
+[2.223415] (piplane) StdoutLine: {'line': b'[ 39%] \x1b[32mBuilding ASM object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.obj\x1b[0m\n'}
+[2.223507] (piplane) StdoutLine: {'line': b'[ 42%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/pico_platform/platform.c.obj\x1b[0m\n'}
+[2.223559] (piplane) StdoutLine: {'line': b'[ 42%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj\x1b[0m\n'}
+[2.223631] (piplane) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj\x1b[0m\n'}
+[2.223681] (piplane) StdoutLine: {'line': b'[ 43%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_sync/mutex.c.obj\x1b[0m\n'}
+[2.223730] (piplane) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_time/timeout_helper.c.obj\x1b[0m\n'}
+[2.223977] (piplane) StdoutLine: {'line': b'[ 46%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj\x1b[0m\n'}
+[2.226048] (piplane) StdoutLine: {'line': b'[ 47%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_time/time.c.obj\x1b[0m\n'}
+[2.227060] (piplane) StdoutLine: {'line': b'[ 49%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj\x1b[0m\n'}
+[2.228273] (piplane) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_util/pheap.c.obj\x1b[0m\n'}
+[2.228449] (piplane) StdoutLine: {'line': b'[ 52%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_sync/sem.c.obj\x1b[0m\n'}
+[2.228546] (piplane) StdoutLine: {'line': b'[ 53%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_util/datetime.c.obj\x1b[0m\n'}
+[2.229366] (piplane) StdoutLine: {'line': b'[ 54%] \x1b[32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_util/queue.c.obj\x1b[0m\n'}
+[2.233677] (piplane) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/dshot.c:1\x1b[m\x1b[K:\n'}
+[2.233929] (piplane) StderrLine: {'line': b'\x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/dshot.h:5:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kbool.h: No such file or directory\n'}
+[2.234056] (piplane) StderrLine: {'line': b'    5 | #include \x1b[01;31m\x1b[K<bool.h>\x1b[m\x1b[K\n'}
+[2.234138] (piplane) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[2.234225] (piplane) StderrLine: {'line': b'compilation terminated.\n'}
+[2.234356] (piplane) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/piplane.dir/build.make:90: CMakeFiles/piplane.dir/dshot.c.obj] Error 1\n'}
+[2.234439] (piplane) StderrLine: {'line': b'gmake[2]: *** Waiting for unfinished jobs....\n'}
+[2.243300] (piplane) StderrLine: {'line': b'\x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/piplane.c:4:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Krcl/rcl.h: No such file or directory\n'}
+[2.243863] (piplane) StderrLine: {'line': b'    4 | #include \x1b[01;31m\x1b[K<rcl/rcl.h>\x1b[m\x1b[K\n'}
+[2.244027] (piplane) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.244122] (piplane) StderrLine: {'line': b'compilation terminated.\n'}
+[2.245603] (piplane) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/piplane.dir/build.make:76: CMakeFiles/piplane.dir/piplane.c.obj] Error 1\n'}
+[2.256093] (piplane) StderrLine: {'line': b'\x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/pico_uart_transport.c:4:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kuxr/client/profile/transport/custom/custom_transport.h: No such file or directory\n'}
+[2.256340] (piplane) StderrLine: {'line': b'    4 | #include \x1b[01;31m\x1b[K<uxr/client/profile/transport/custom/custom_transport.h>\x1b[m\x1b[K\n'}
+[2.256433] (piplane) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.256519] (piplane) StderrLine: {'line': b'compilation terminated.\n'}
+[2.257521] (piplane) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:1\x1b[m\x1b[K:\n'}
+[2.257755] (piplane) StderrLine: {'line': b"\x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/pio_loader.h:13:1:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kunknown type name '\x1b[01m\x1b[KPioProgram\x1b[m\x1b[K'; use '\x1b[01m\x1b[Kstruct\x1b[m\x1b[K' keyword to refer to the type\n"}
+[2.257885] (piplane) StderrLine: {'line': b'   13 | \x1b[01;31m\x1b[KPioProgram\x1b[m\x1b[K pio0_programs[MAX_PROGRAMS_PER_PIO];\n'}
+[2.257971] (piplane) StderrLine: {'line': b'      | \x1b[01;31m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.258055] (piplane) StderrLine: {'line': b'      | \x1b[32m\x1b[Kstruct \x1b[m\x1b[K\n'}
+[2.258129] (piplane) StderrLine: {'line': b"\x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/pio_loader.h:13:12:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kvariably modified '\x1b[01m\x1b[Kpio0_programs\x1b[m\x1b[K' at file scope\n"}
+[2.258207] (piplane) StderrLine: {'line': b'   13 | PioProgram \x1b[01;31m\x1b[Kpio0_programs\x1b[m\x1b[K[MAX_PROGRAMS_PER_PIO];\n'}
+[2.258281] (piplane) StderrLine: {'line': b'      |            \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.258361] (piplane) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/piplane.dir/build.make:118: CMakeFiles/piplane.dir/pico_uart_transport.c.obj] Error 1\n'}
+[2.258437] (piplane) StderrLine: {'line': b"\x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/pio_loader.h:16:1:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kunknown type name '\x1b[01m\x1b[KPioProgram\x1b[m\x1b[K'; use '\x1b[01m\x1b[Kstruct\x1b[m\x1b[K' keyword to refer to the type\n"}
+[2.258523] (piplane) StderrLine: {'line': b'   16 | \x1b[01;31m\x1b[KPioProgram\x1b[m\x1b[K pio1_programs[MAX_PROGRAMS_PER_PIO];\n'}
+[2.258623] (piplane) StderrLine: {'line': b'      | \x1b[01;31m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.258717] (piplane) StderrLine: {'line': b'      | \x1b[32m\x1b[Kstruct \x1b[m\x1b[K\n'}
+[2.258795] (piplane) StderrLine: {'line': b"\x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/pio_loader.h:16:12:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kvariably modified '\x1b[01m\x1b[Kpio1_programs\x1b[m\x1b[K' at file scope\n"}
+[2.258868] (piplane) StderrLine: {'line': b'   16 | PioProgram \x1b[01;31m\x1b[Kpio1_programs\x1b[m\x1b[K[MAX_PROGRAMS_PER_PIO];\n'}
+[2.258946] (piplane) StderrLine: {'line': b'      |            \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.259145] (piplane) StderrLine: {'line': b"\x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:\x1b[m\x1b[K In function '\x1b[01m\x1b[Kpio_loader_add_or_get_offset\x1b[m\x1b[K':\n"}
+[2.259285] (piplane) StderrLine: {'line': b"\x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:4:5:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kunknown type name '\x1b[01m\x1b[KPioProgram\x1b[m\x1b[K'; use '\x1b[01m\x1b[Kstruct\x1b[m\x1b[K' keyword to refer to the type\n"}
+[2.259379] (piplane) StderrLine: {'line': b'    4 |     \x1b[01;31m\x1b[KPioProgram\x1b[m\x1b[K* added_programs;\n'}
+[2.259460] (piplane) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.259538] (piplane) StderrLine: {'line': b'      |     \x1b[32m\x1b[Kstruct \x1b[m\x1b[K\n'}
+[2.259637] (piplane) StderrLine: {'line': b"\x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:17:30:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Krequest for member '\x1b[01m\x1b[Kprogram\x1b[m\x1b[K' in something not a structure or union\n"}
+[2.259725] (piplane) StderrLine: {'line': b'   17 |         if (added_programs[i]\x1b[01;31m\x1b[K.\x1b[m\x1b[Kprogram == program) {\n'}
+[2.259809] (piplane) StderrLine: {'line': b'      |                              \x1b[01;31m\x1b[K^\x1b[m\x1b[K\n'}
+[2.259891] (piplane) StderrLine: {'line': b"\x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:18:40:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Krequest for member '\x1b[01m\x1b[Koffset\x1b[m\x1b[K' in something not a structure or union\n"}
+[2.259973] (piplane) StderrLine: {'line': b'   18 |             *offset = added_programs[i]\x1b[01;31m\x1b[K.\x1b[m\x1b[Koffset;\n'}
+[2.260056] (piplane) StderrLine: {'line': b'      |                                        \x1b[01;31m\x1b[K^\x1b[m\x1b[K\n'}
+[2.260140] (piplane) StderrLine: {'line': b"\x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:30:5:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kunknown type name '\x1b[01m\x1b[KPioProgram\x1b[m\x1b[K'; use '\x1b[01m\x1b[Kstruct\x1b[m\x1b[K' keyword to refer to the type\n"}
+[2.260224] (piplane) StderrLine: {'line': b'   30 |     \x1b[01;31m\x1b[KPioProgram\x1b[m\x1b[K* added_program = &added_programs[(*added_program_count)++];\n'}
+[2.260312] (piplane) StderrLine: {'line': b'      |     \x1b[01;31m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.260400] (piplane) StderrLine: {'line': b'      |     \x1b[32m\x1b[Kstruct \x1b[m\x1b[K\n'}
+[2.260486] (piplane) StderrLine: {'line': b"\x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:31:18:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Krequest for member '\x1b[01m\x1b[Kprogram\x1b[m\x1b[K' in something not a structure or union\n"}
+[2.260578] (piplane) StderrLine: {'line': b'   31 |     added_program\x1b[01;31m\x1b[K->\x1b[m\x1b[Kprogram = program;\n'}
+[2.260743] (piplane) StderrLine: {'line': b'      |                  \x1b[01;31m\x1b[K^~\x1b[m\x1b[K\n'}
+[2.260825] (piplane) StderrLine: {'line': b"\x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:32:18:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Krequest for member '\x1b[01m\x1b[Koffset\x1b[m\x1b[K' in something not a structure or union\n"}
+[2.260900] (piplane) StderrLine: {'line': b'   32 |     added_program\x1b[01;31m\x1b[K->\x1b[m\x1b[Koffset = pio_add_program(pio, program);\n'}
+[2.260972] (piplane) StderrLine: {'line': b'      |                  \x1b[01;31m\x1b[K^~\x1b[m\x1b[K\n'}
+[2.261052] (piplane) StderrLine: {'line': b"\x1b[01m\x1b[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:34:28:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Krequest for member '\x1b[01m\x1b[Koffset\x1b[m\x1b[K' in something not a structure or union\n"}
+[2.261127] (piplane) StderrLine: {'line': b'   34 |     *offset = added_program\x1b[01;31m\x1b[K->\x1b[m\x1b[Koffset;\n'}
+[2.261200] (piplane) StderrLine: {'line': b'      |                            \x1b[01;31m\x1b[K^~\x1b[m\x1b[K\n'}
+[2.261274] (piplane) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/piplane.dir/build.make:104: CMakeFiles/piplane.dir/pio_loader.c.obj] Error 1\n'}
+[2.303340] (-) TimerEvent: {}
+[2.379352] (piplane) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:1509: CMakeFiles/piplane.dir/all] Error 2\n'}
+[2.379630] (piplane) StderrLine: {'line': b'gmake[1]: *** Waiting for unfinished jobs....\n'}
+[2.403489] (-) TimerEvent: {}
+[2.504039] (-) TimerEvent: {}
+[2.604513] (-) TimerEvent: {}
+[2.645217] (piplane) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable pioasm\x1b[0m\n'}
+[2.704634] (-) TimerEvent: {}
+[2.749089] (piplane) StdoutLine: {'line': b'[100%] Built target pioasm\n'}
+[2.779166] (piplane) StdoutLine: {'line': b"[ 56%] \x1b[34m\x1b[1mNo install step for 'PioasmBuild'\x1b[0m\n"}
+[2.804721] (-) TimerEvent: {}
+[2.806570] (piplane) StdoutLine: {'line': b"[ 57%] \x1b[34m\x1b[1mCompleted 'PioasmBuild'\x1b[0m\n"}
+[2.864297] (piplane) StdoutLine: {'line': b'[ 57%] Built target PioasmBuild\n'}
+[2.865501] (piplane) StderrLine: {'line': b'gmake: *** [Makefile:91: all] Error 2\n'}
+[2.868051] (piplane) CommandEnded: {'returncode': 2}
+[2.868423] (piplane) JobEnded: {'identifier': 'piplane', 'rc': 2}
+[2.878600] (-) EventReactorShutdown: {}

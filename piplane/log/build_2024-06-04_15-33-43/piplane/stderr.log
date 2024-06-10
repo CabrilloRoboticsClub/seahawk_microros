@@ -1,0 +1,82 @@
+[0mUsing PICO_SDK_PATH from environment ('/home/taschnell/pico-sdk')[0m
+[0mPICO_SDK_PATH is /home/taschnell/pico-sdk[0m
+[0mDefaulting PICO_PLATFORM to rp2040 since not specified.[0m
+[0mDefaulting PICO platform compiler to pico_arm_gcc since not specified.[0m
+[0mPICO compiler is pico_arm_gcc[0m
+[0mBuild type is Release[0m
+[0mDefaulting PICO target board to pico since not specified.[0m
+[0mUsing board configuration from /home/taschnell/pico-sdk/src/boards/include/boards/pico.h[0m
+[0mTinyUSB available at /home/taschnell/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040; enabling build support for USB.[0m
+[0mBTstack available at /home/taschnell/pico-sdk/lib/btstack[0m
+[0mcyw43-driver available at /home/taschnell/pico-sdk/lib/cyw43-driver[0m
+[0mPico W Bluetooth build support available.[0m
+[0mlwIP available at /home/taschnell/pico-sdk/lib/lwip[0m
+[0mmbedtls available at /home/taschnell/pico-sdk/lib/mbedtls[0m
+[0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+[0m
+In file included from [01m[K/home/taschnell/piplane-microros/src/piplane/dshot.c:1[m[K:
+[01m[K/home/taschnell/piplane-microros/src/piplane/dshot.h:5:10:[m[K [01;31m[Kfatal error: [m[Kbool.h: No such file or directory
+    5 | #include [01;31m[K<bool.h>[m[K
+      |          [01;31m[K^~~~~~~~[m[K
+compilation terminated.
+gmake[2]: *** [CMakeFiles/piplane.dir/build.make:90: CMakeFiles/piplane.dir/dshot.c.obj] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+[01m[K/home/taschnell/piplane-microros/src/piplane/piplane.c:4:10:[m[K [01;31m[Kfatal error: [m[Krcl/rcl.h: No such file or directory
+    4 | #include [01;31m[K<rcl/rcl.h>[m[K
+      |          [01;31m[K^~~~~~~~~~~[m[K
+compilation terminated.
+gmake[2]: *** [CMakeFiles/piplane.dir/build.make:76: CMakeFiles/piplane.dir/piplane.c.obj] Error 1
+[01m[K/home/taschnell/piplane-microros/src/piplane/pico_uart_transport.c:4:10:[m[K [01;31m[Kfatal error: [m[Kuxr/client/profile/transport/custom/custom_transport.h: No such file or directory
+    4 | #include [01;31m[K<uxr/client/profile/transport/custom/custom_transport.h>[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+In file included from [01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:1[m[K:
+[01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.h:13:1:[m[K [01;31m[Kerror: [m[Kunknown type name '[01m[KPioProgram[m[K'; use '[01m[Kstruct[m[K' keyword to refer to the type
+   13 | [01;31m[KPioProgram[m[K pio0_programs[MAX_PROGRAMS_PER_PIO];
+      | [01;31m[K^~~~~~~~~~[m[K
+      | [32m[Kstruct [m[K
+[01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.h:13:12:[m[K [01;31m[Kerror: [m[Kvariably modified '[01m[Kpio0_programs[m[K' at file scope
+   13 | PioProgram [01;31m[Kpio0_programs[m[K[MAX_PROGRAMS_PER_PIO];
+      |            [01;31m[K^~~~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/piplane.dir/build.make:118: CMakeFiles/piplane.dir/pico_uart_transport.c.obj] Error 1
+[01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.h:16:1:[m[K [01;31m[Kerror: [m[Kunknown type name '[01m[KPioProgram[m[K'; use '[01m[Kstruct[m[K' keyword to refer to the type
+   16 | [01;31m[KPioProgram[m[K pio1_programs[MAX_PROGRAMS_PER_PIO];
+      | [01;31m[K^~~~~~~~~~[m[K
+      | [32m[Kstruct [m[K
+[01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.h:16:12:[m[K [01;31m[Kerror: [m[Kvariably modified '[01m[Kpio1_programs[m[K' at file scope
+   16 | PioProgram [01;31m[Kpio1_programs[m[K[MAX_PROGRAMS_PER_PIO];
+      |            [01;31m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:[m[K In function '[01m[Kpio_loader_add_or_get_offset[m[K':
+[01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:4:5:[m[K [01;31m[Kerror: [m[Kunknown type name '[01m[KPioProgram[m[K'; use '[01m[Kstruct[m[K' keyword to refer to the type
+    4 |     [01;31m[KPioProgram[m[K* added_programs;
+      |     [01;31m[K^~~~~~~~~~[m[K
+      |     [32m[Kstruct [m[K
+[01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:17:30:[m[K [01;31m[Kerror: [m[Krequest for member '[01m[Kprogram[m[K' in something not a structure or union
+   17 |         if (added_programs[i][01;31m[K.[m[Kprogram == program) {
+      |                              [01;31m[K^[m[K
+[01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:18:40:[m[K [01;31m[Kerror: [m[Krequest for member '[01m[Koffset[m[K' in something not a structure or union
+   18 |             *offset = added_programs[i][01;31m[K.[m[Koffset;
+      |                                        [01;31m[K^[m[K
+[01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:30:5:[m[K [01;31m[Kerror: [m[Kunknown type name '[01m[KPioProgram[m[K'; use '[01m[Kstruct[m[K' keyword to refer to the type
+   30 |     [01;31m[KPioProgram[m[K* added_program = &added_programs[(*added_program_count)++];
+      |     [01;31m[K^~~~~~~~~~[m[K
+      |     [32m[Kstruct [m[K
+[01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:31:18:[m[K [01;31m[Kerror: [m[Krequest for member '[01m[Kprogram[m[K' in something not a structure or union
+   31 |     added_program[01;31m[K->[m[Kprogram = program;
+      |                  [01;31m[K^~[m[K
+[01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:32:18:[m[K [01;31m[Kerror: [m[Krequest for member '[01m[Koffset[m[K' in something not a structure or union
+   32 |     added_program[01;31m[K->[m[Koffset = pio_add_program(pio, program);
+      |                  [01;31m[K^~[m[K
+[01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:34:28:[m[K [01;31m[Kerror: [m[Krequest for member '[01m[Koffset[m[K' in something not a structure or union
+   34 |     *offset = added_program[01;31m[K->[m[Koffset;
+      |                            [01;31m[K^~[m[K
+gmake[2]: *** [CMakeFiles/piplane.dir/build.make:104: CMakeFiles/piplane.dir/pio_loader.c.obj] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:1509: CMakeFiles/piplane.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+gmake: *** [Makefile:91: all] Error 2

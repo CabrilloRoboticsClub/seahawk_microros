@@ -1,0 +1,189 @@
+[0.015s] Invoking command in '/home/taschnell/piplane-microros/src/piplane/build/piplane': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/taschnell/piplane-microros/src/piplane -DCMAKE_INSTALL_PREFIX=/home/taschnell/piplane-microros/src/piplane/install/piplane
+[0.029s] [0mUsing PICO_SDK_PATH from environment ('/home/taschnell/pico-sdk')[0m
+[0.029s] [0mPICO_SDK_PATH is /home/taschnell/pico-sdk[0m
+[0.029s] [0mDefaulting PICO_PLATFORM to rp2040 since not specified.[0m
+[0.029s] -- Defaulting build type to 'Release' since not specified.
+[0.029s] [0mDefaulting PICO platform compiler to pico_arm_gcc since not specified.[0m
+[0.029s] [0mPICO compiler is pico_arm_gcc[0m
+[0.113s] -- The C compiler identification is GNU 9.3.1
+[0.221s] -- The CXX compiler identification is GNU 9.3.1
+[0.235s] -- The ASM compiler identification is GNU
+[0.239s] -- Found assembler: /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/arm-none-eabi-gcc
+[0.254s] -- Detecting C compiler ABI info
+[0.341s] -- Detecting C compiler ABI info - done
+[0.352s] -- Check for working C compiler: /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/arm-none-eabi-gcc - skipped
+[0.353s] -- Detecting C compile features
+[0.353s] -- Detecting C compile features - done
+[0.371s] -- Detecting CXX compiler ABI info
+[0.485s] -- Detecting CXX compiler ABI info - done
+[0.497s] -- Check for working CXX compiler: /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/arm-none-eabi-g++ - skipped
+[0.497s] -- Detecting CXX compile features
+[0.497s] -- Detecting CXX compile features - done
+[0.514s] [0mBuild type is Release[0m
+[0.516s] [0mDefaulting PICO target board to pico since not specified.[0m
+[0.516s] [0mUsing board configuration from /home/taschnell/pico-sdk/src/boards/include/boards/pico.h[0m
+[0.644s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[0.655s] [0mTinyUSB available at /home/taschnell/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040; enabling build support for USB.[0m
+[0.679s] [0mBTstack available at /home/taschnell/pico-sdk/lib/btstack[0m
+[0.679s] [0mcyw43-driver available at /home/taschnell/pico-sdk/lib/cyw43-driver[0m
+[0.683s] [0mPico W Bluetooth build support available.[0m
+[0.684s] [0mlwIP available at /home/taschnell/pico-sdk/lib/lwip[0m
+[0.685s] [0mmbedtls available at /home/taschnell/pico-sdk/lib/mbedtls[0m
+[0.768s] -- Configuring done (0.7s)
+[0.798s] -- Generating done (0.0s)
+[0.801s] -- Build files have been written to: /home/taschnell/piplane-microros/src/piplane/build/piplane
+[0.810s] Invoked command in '/home/taschnell/piplane-microros/src/piplane/build/piplane' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/taschnell/piplane-microros/src/piplane -DCMAKE_INSTALL_PREFIX=/home/taschnell/piplane-microros/src/piplane/install/piplane
+[0.812s] Invoking command in '/home/taschnell/piplane-microros/src/piplane/build/piplane': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/taschnell/piplane-microros/src/piplane/build/piplane -- -j22 -l22
+[0.896s] [  1%] [34m[1mCreating directories for 'PioasmBuild'[0m
+[0.903s] [  2%] [32mBuilding ASM object pico-sdk/src/rp2_common/boot_stage2/CMakeFiles/bs2_default.dir/compile_time_choice.S.obj[0m
+[0.906s] [  4%] [34m[1mCreating directories for 'ELF2UF2Build'[0m
+[0.932s] [  5%] [32m[1mLinking ASM executable bs2_default.elf[0m
+[0.934s] [  7%] [34m[1mNo download step for 'PioasmBuild'[0m
+[0.938s] [  8%] [34m[1mNo download step for 'ELF2UF2Build'[0m
+[0.961s] [  8%] Built target bs2_default
+[0.961s] [  9%] [34m[1mNo update step for 'PioasmBuild'[0m
+[0.968s] [ 11%] [34m[1mNo update step for 'ELF2UF2Build'[0m
+[0.983s] [ 12%] [34m[1mGenerating bs2_default.bin[0m
+[0.990s] [ 14%] [34m[1mNo patch step for 'PioasmBuild'[0m
+[0.993s] [ 15%] [34m[1mNo patch step for 'ELF2UF2Build'[0m
+[0.994s] [ 16%] [34m[1mGenerating bs2_default_padded_checksummed.S[0m
+[1.022s] [ 18%] [34m[1mPerforming configure step for 'ELF2UF2Build'[0m
+[1.027s] [ 19%] [34m[1mPerforming configure step for 'PioasmBuild'[0m
+[1.036s] loading initial cache file /home/taschnell/piplane-microros/src/piplane/build/piplane/pico-sdk/src/rp2_common/tinyusb/pioasm/tmp/PioasmBuild-cache-Release.cmake
+[1.036s] [0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+[1.036s]   Compatibility with CMake < 3.5 will be removed from a future version of
+[1.037s]   CMake.
+[1.037s] 
+[1.037s]   Update the VERSION argument <min> value or use a ...<max> suffix to tell
+[1.037s]   CMake that the project does not need compatibility with older versions.
+[1.037s] 
+[1.037s] [0m
+[1.037s] [ 19%] Built target bs2_default_padded_checksummed_asm
+[1.097s] -- The C compiler identification is GNU 13.2.0
+[1.108s] -- The CXX compiler identification is GNU 13.2.0
+[1.131s] -- Detecting CXX compiler ABI info
+[1.156s] -- The CXX compiler identification is GNU 13.2.0
+[1.183s] -- Detecting C compiler ABI info
+[1.243s] -- Detecting CXX compiler ABI info - done
+[1.255s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.255s] -- Detecting CXX compile features
+[1.256s] -- Detecting CXX compile features - done
+[1.257s] -- Configuring done (0.2s)
+[1.260s] -- Generating done (0.0s)
+[1.261s] -- Build files have been written to: /home/taschnell/piplane-microros/src/piplane/build/piplane/pioasm
+[1.287s] [ 21%] [34m[1mPerforming build step for 'PioasmBuild'[0m
+[1.294s] -- Detecting C compiler ABI info - done
+[1.306s] -- Check for working C compiler: /usr/bin/cc - skipped
+[1.307s] -- Detecting C compile features
+[1.307s] -- Detecting C compile features - done
+[1.321s] -- Detecting CXX compiler ABI info
+[1.339s] [ 30%] [32mBuilding CXX object CMakeFiles/pioasm.dir/main.cpp.o[0m
+[1.339s] [ 30%] [32mBuilding CXX object CMakeFiles/pioasm.dir/pio_assembler.cpp.o[0m
+[1.339s] [ 30%] [32mBuilding CXX object CMakeFiles/pioasm.dir/gen/lexer.cpp.o[0m
+[1.339s] [ 50%] [32mBuilding CXX object CMakeFiles/pioasm.dir/pio_disassembler.cpp.o[0m
+[1.339s] [ 50%] [32mBuilding CXX object CMakeFiles/pioasm.dir/c_sdk_output.cpp.o[0m
+[1.340s] [ 70%] [32mBuilding CXX object CMakeFiles/pioasm.dir/python_output.cpp.o[0m
+[1.340s] [ 70%] [32mBuilding CXX object CMakeFiles/pioasm.dir/gen/parser.cpp.o[0m
+[1.340s] [ 80%] [32mBuilding CXX object CMakeFiles/pioasm.dir/hex_output.cpp.o[0m
+[1.340s] [ 90%] [32mBuilding CXX object CMakeFiles/pioasm.dir/ada_output.cpp.o[0m
+[1.434s] -- Detecting CXX compiler ABI info - done
+[1.445s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.445s] -- Detecting CXX compile features
+[1.446s] -- Detecting CXX compile features - done
+[1.447s] -- Configuring done (0.4s)
+[1.450s] -- Generating done (0.0s)
+[1.451s] -- Build files have been written to: /home/taschnell/piplane-microros/src/piplane/build/piplane/elf2uf2
+[1.473s] [ 22%] [34m[1mPerforming build step for 'ELF2UF2Build'[0m
+[1.523s] [ 50%] [32mBuilding CXX object CMakeFiles/elf2uf2.dir/main.cpp.o[0m
+[2.005s] [100%] [32m[1mLinking CXX executable elf2uf2[0m
+[2.091s] [100%] Built target elf2uf2
+[2.120s] [ 23%] [34m[1mNo install step for 'ELF2UF2Build'[0m
+[2.141s] [ 25%] [34m[1mCompleted 'ELF2UF2Build'[0m
+[2.179s] [ 25%] Built target ELF2UF2Build
+[2.219s] [ 26%] [32mBuilding C object CMakeFiles/piplane.dir/dshot.c.obj[0m
+[2.219s] [ 30%] [32mBuilding C object CMakeFiles/piplane.dir/pio_loader.c.obj[0m
+[2.222s] [ 30%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj[0m
+[2.222s] [ 40%] [32mBuilding C object CMakeFiles/piplane.dir/pico_uart_transport.c.obj[0m
+[2.223s] [ 40%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_sync/lock_core.c.obj[0m
+[2.223s] [ 40%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_sync/critical_section.c.obj[0m
+[2.223s] [ 40%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj[0m
+[2.223s] [ 32%] [32mBuilding C object CMakeFiles/piplane.dir/piplane.c.obj[0m
+[2.223s] [ 39%] [32mBuilding ASM object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.obj[0m
+[2.223s] [ 42%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/pico_platform/platform.c.obj[0m
+[2.223s] [ 42%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj[0m
+[2.223s] [ 40%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj[0m
+[2.223s] [ 43%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_sync/mutex.c.obj[0m
+[2.223s] [ 45%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_time/timeout_helper.c.obj[0m
+[2.223s] [ 46%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj[0m
+[2.226s] [ 47%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_time/time.c.obj[0m
+[2.227s] [ 49%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj[0m
+[2.228s] [ 50%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_util/pheap.c.obj[0m
+[2.228s] [ 52%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_sync/sem.c.obj[0m
+[2.228s] [ 53%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_util/datetime.c.obj[0m
+[2.229s] [ 54%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_util/queue.c.obj[0m
+[2.233s] In file included from [01m[K/home/taschnell/piplane-microros/src/piplane/dshot.c:1[m[K:
+[2.233s] [01m[K/home/taschnell/piplane-microros/src/piplane/dshot.h:5:10:[m[K [01;31m[Kfatal error: [m[Kbool.h: No such file or directory
+[2.233s]     5 | #include [01;31m[K<bool.h>[m[K
+[2.234s]       |          [01;31m[K^~~~~~~~[m[K
+[2.234s] compilation terminated.
+[2.234s] gmake[2]: *** [CMakeFiles/piplane.dir/build.make:90: CMakeFiles/piplane.dir/dshot.c.obj] Error 1
+[2.234s] gmake[2]: *** Waiting for unfinished jobs....
+[2.243s] [01m[K/home/taschnell/piplane-microros/src/piplane/piplane.c:4:10:[m[K [01;31m[Kfatal error: [m[Krcl/rcl.h: No such file or directory
+[2.243s]     4 | #include [01;31m[K<rcl/rcl.h>[m[K
+[2.243s]       |          [01;31m[K^~~~~~~~~~~[m[K
+[2.244s] compilation terminated.
+[2.245s] gmake[2]: *** [CMakeFiles/piplane.dir/build.make:76: CMakeFiles/piplane.dir/piplane.c.obj] Error 1
+[2.256s] [01m[K/home/taschnell/piplane-microros/src/piplane/pico_uart_transport.c:4:10:[m[K [01;31m[Kfatal error: [m[Kuxr/client/profile/transport/custom/custom_transport.h: No such file or directory
+[2.256s]     4 | #include [01;31m[K<uxr/client/profile/transport/custom/custom_transport.h>[m[K
+[2.256s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[2.256s] compilation terminated.
+[2.257s] In file included from [01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:1[m[K:
+[2.257s] [01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.h:13:1:[m[K [01;31m[Kerror: [m[Kunknown type name '[01m[KPioProgram[m[K'; use '[01m[Kstruct[m[K' keyword to refer to the type
+[2.257s]    13 | [01;31m[KPioProgram[m[K pio0_programs[MAX_PROGRAMS_PER_PIO];
+[2.257s]       | [01;31m[K^~~~~~~~~~[m[K
+[2.257s]       | [32m[Kstruct [m[K
+[2.258s] [01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.h:13:12:[m[K [01;31m[Kerror: [m[Kvariably modified '[01m[Kpio0_programs[m[K' at file scope
+[2.258s]    13 | PioProgram [01;31m[Kpio0_programs[m[K[MAX_PROGRAMS_PER_PIO];
+[2.258s]       |            [01;31m[K^~~~~~~~~~~~~[m[K
+[2.258s] gmake[2]: *** [CMakeFiles/piplane.dir/build.make:118: CMakeFiles/piplane.dir/pico_uart_transport.c.obj] Error 1
+[2.258s] [01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.h:16:1:[m[K [01;31m[Kerror: [m[Kunknown type name '[01m[KPioProgram[m[K'; use '[01m[Kstruct[m[K' keyword to refer to the type
+[2.258s]    16 | [01;31m[KPioProgram[m[K pio1_programs[MAX_PROGRAMS_PER_PIO];
+[2.258s]       | [01;31m[K^~~~~~~~~~[m[K
+[2.258s]       | [32m[Kstruct [m[K
+[2.258s] [01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.h:16:12:[m[K [01;31m[Kerror: [m[Kvariably modified '[01m[Kpio1_programs[m[K' at file scope
+[2.258s]    16 | PioProgram [01;31m[Kpio1_programs[m[K[MAX_PROGRAMS_PER_PIO];
+[2.258s]       |            [01;31m[K^~~~~~~~~~~~~[m[K
+[2.259s] [01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:[m[K In function '[01m[Kpio_loader_add_or_get_offset[m[K':
+[2.259s] [01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:4:5:[m[K [01;31m[Kerror: [m[Kunknown type name '[01m[KPioProgram[m[K'; use '[01m[Kstruct[m[K' keyword to refer to the type
+[2.259s]     4 |     [01;31m[KPioProgram[m[K* added_programs;
+[2.259s]       |     [01;31m[K^~~~~~~~~~[m[K
+[2.259s]       |     [32m[Kstruct [m[K
+[2.259s] [01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:17:30:[m[K [01;31m[Kerror: [m[Krequest for member '[01m[Kprogram[m[K' in something not a structure or union
+[2.259s]    17 |         if (added_programs[i][01;31m[K.[m[Kprogram == program) {
+[2.259s]       |                              [01;31m[K^[m[K
+[2.259s] [01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:18:40:[m[K [01;31m[Kerror: [m[Krequest for member '[01m[Koffset[m[K' in something not a structure or union
+[2.259s]    18 |             *offset = added_programs[i][01;31m[K.[m[Koffset;
+[2.259s]       |                                        [01;31m[K^[m[K
+[2.260s] [01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:30:5:[m[K [01;31m[Kerror: [m[Kunknown type name '[01m[KPioProgram[m[K'; use '[01m[Kstruct[m[K' keyword to refer to the type
+[2.260s]    30 |     [01;31m[KPioProgram[m[K* added_program = &added_programs[(*added_program_count)++];
+[2.260s]       |     [01;31m[K^~~~~~~~~~[m[K
+[2.260s]       |     [32m[Kstruct [m[K
+[2.260s] [01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:31:18:[m[K [01;31m[Kerror: [m[Krequest for member '[01m[Kprogram[m[K' in something not a structure or union
+[2.260s]    31 |     added_program[01;31m[K->[m[Kprogram = program;
+[2.260s]       |                  [01;31m[K^~[m[K
+[2.260s] [01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:32:18:[m[K [01;31m[Kerror: [m[Krequest for member '[01m[Koffset[m[K' in something not a structure or union
+[2.260s]    32 |     added_program[01;31m[K->[m[Koffset = pio_add_program(pio, program);
+[2.260s]       |                  [01;31m[K^~[m[K
+[2.260s] [01m[K/home/taschnell/piplane-microros/src/piplane/pio_loader.c:34:28:[m[K [01;31m[Kerror: [m[Krequest for member '[01m[Koffset[m[K' in something not a structure or union
+[2.261s]    34 |     *offset = added_program[01;31m[K->[m[Koffset;
+[2.261s]       |                            [01;31m[K^~[m[K
+[2.261s] gmake[2]: *** [CMakeFiles/piplane.dir/build.make:104: CMakeFiles/piplane.dir/pio_loader.c.obj] Error 1
+[2.379s] gmake[1]: *** [CMakeFiles/Makefile2:1509: CMakeFiles/piplane.dir/all] Error 2
+[2.379s] gmake[1]: *** Waiting for unfinished jobs....
+[2.645s] [100%] [32m[1mLinking CXX executable pioasm[0m
+[2.749s] [100%] Built target pioasm
+[2.779s] [ 56%] [34m[1mNo install step for 'PioasmBuild'[0m
+[2.806s] [ 57%] [34m[1mCompleted 'PioasmBuild'[0m
+[2.864s] [ 57%] Built target PioasmBuild
+[2.865s] gmake: *** [Makefile:91: all] Error 2
+[2.868s] Invoked command in '/home/taschnell/piplane-microros/src/piplane/build/piplane' returned '2': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/taschnell/piplane-microros/src/piplane/build/piplane -- -j22 -l22

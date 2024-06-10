@@ -1,0 +1,103 @@
+-- Defaulting build type to 'Release' since not specified.
+-- The C compiler identification is GNU 9.3.1
+-- The CXX compiler identification is GNU 9.3.1
+-- The ASM compiler identification is GNU
+-- Found assembler: /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/arm-none-eabi-gcc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/arm-none-eabi-gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/arm-none-eabi-g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+-- Configuring done (0.7s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/taschnell/piplane-microros/src/piplane/build/piplane
+[  1%] [34m[1mCreating directories for 'PioasmBuild'[0m
+[  2%] [32mBuilding ASM object pico-sdk/src/rp2_common/boot_stage2/CMakeFiles/bs2_default.dir/compile_time_choice.S.obj[0m
+[  4%] [34m[1mCreating directories for 'ELF2UF2Build'[0m
+[  5%] [32m[1mLinking ASM executable bs2_default.elf[0m
+[  7%] [34m[1mNo download step for 'PioasmBuild'[0m
+[  8%] [34m[1mNo download step for 'ELF2UF2Build'[0m
+[  8%] Built target bs2_default
+[  9%] [34m[1mNo update step for 'PioasmBuild'[0m
+[ 11%] [34m[1mNo update step for 'ELF2UF2Build'[0m
+[ 12%] [34m[1mGenerating bs2_default.bin[0m
+[ 14%] [34m[1mNo patch step for 'PioasmBuild'[0m
+[ 15%] [34m[1mNo patch step for 'ELF2UF2Build'[0m
+[ 16%] [34m[1mGenerating bs2_default_padded_checksummed.S[0m
+[ 18%] [34m[1mPerforming configure step for 'ELF2UF2Build'[0m
+[ 19%] [34m[1mPerforming configure step for 'PioasmBuild'[0m
+loading initial cache file /home/taschnell/piplane-microros/src/piplane/build/piplane/pico-sdk/src/rp2_common/tinyusb/pioasm/tmp/PioasmBuild-cache-Release.cmake
+[ 19%] Built target bs2_default_padded_checksummed_asm
+-- The C compiler identification is GNU 13.2.0
+-- The CXX compiler identification is GNU 13.2.0
+-- Detecting CXX compiler ABI info
+-- The CXX compiler identification is GNU 13.2.0
+-- Detecting C compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/taschnell/piplane-microros/src/piplane/build/piplane/pioasm
+[ 21%] [34m[1mPerforming build step for 'PioasmBuild'[0m
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+[ 30%] [32mBuilding CXX object CMakeFiles/pioasm.dir/main.cpp.o[0m
+[ 30%] [32mBuilding CXX object CMakeFiles/pioasm.dir/pio_assembler.cpp.o[0m
+[ 30%] [32mBuilding CXX object CMakeFiles/pioasm.dir/gen/lexer.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/pioasm.dir/pio_disassembler.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/pioasm.dir/c_sdk_output.cpp.o[0m
+[ 70%] [32mBuilding CXX object CMakeFiles/pioasm.dir/python_output.cpp.o[0m
+[ 70%] [32mBuilding CXX object CMakeFiles/pioasm.dir/gen/parser.cpp.o[0m
+[ 80%] [32mBuilding CXX object CMakeFiles/pioasm.dir/hex_output.cpp.o[0m
+[ 90%] [32mBuilding CXX object CMakeFiles/pioasm.dir/ada_output.cpp.o[0m
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.4s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/taschnell/piplane-microros/src/piplane/build/piplane/elf2uf2
+[ 22%] [34m[1mPerforming build step for 'ELF2UF2Build'[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/elf2uf2.dir/main.cpp.o[0m
+[100%] [32m[1mLinking CXX executable elf2uf2[0m
+[100%] Built target elf2uf2
+[ 23%] [34m[1mNo install step for 'ELF2UF2Build'[0m
+[ 25%] [34m[1mCompleted 'ELF2UF2Build'[0m
+[ 25%] Built target ELF2UF2Build
+[ 26%] [32mBuilding C object CMakeFiles/piplane.dir/dshot.c.obj[0m
+[ 30%] [32mBuilding C object CMakeFiles/piplane.dir/pio_loader.c.obj[0m
+[ 30%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj[0m
+[ 40%] [32mBuilding C object CMakeFiles/piplane.dir/pico_uart_transport.c.obj[0m
+[ 40%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_sync/lock_core.c.obj[0m
+[ 40%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_sync/critical_section.c.obj[0m
+[ 40%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj[0m
+[ 32%] [32mBuilding C object CMakeFiles/piplane.dir/piplane.c.obj[0m
+[ 39%] [32mBuilding ASM object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.obj[0m
+[ 42%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/pico_platform/platform.c.obj[0m
+[ 42%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj[0m
+[ 40%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj[0m
+[ 43%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_sync/mutex.c.obj[0m
+[ 45%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_time/timeout_helper.c.obj[0m
+[ 46%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj[0m
+[ 47%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_time/time.c.obj[0m
+[ 49%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj[0m
+[ 50%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_util/pheap.c.obj[0m
+[ 52%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_sync/sem.c.obj[0m
+[ 53%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_util/datetime.c.obj[0m
+[ 54%] [32mBuilding C object CMakeFiles/piplane.dir/home/taschnell/pico-sdk/src/common/pico_util/queue.c.obj[0m
+[100%] [32m[1mLinking CXX executable pioasm[0m
+[100%] Built target pioasm
+[ 56%] [34m[1mNo install step for 'PioasmBuild'[0m
+[ 57%] [34m[1mCompleted 'PioasmBuild'[0m
+[ 57%] Built target PioasmBuild
