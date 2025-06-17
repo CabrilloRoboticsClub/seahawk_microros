@@ -13,6 +13,9 @@
 #include "hardware/pio.h"
 #include "hardware/pwm.h"
 
+#include "uart_proto.h"
+#include "crc.h"
+
 
 const uint LED_PIN = 25;
 
