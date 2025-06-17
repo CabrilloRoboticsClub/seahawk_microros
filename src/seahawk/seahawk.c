@@ -13,6 +13,7 @@
 #include "hardware/pio.h"
 #include "hardware/pwm.h"
 
+#define BMS 0
 #include "uart_proto.h"
 #include "crc.h"
 

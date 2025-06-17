@@ -9,6 +9,7 @@
         "stdio.h": "c",
         "rmw_microros.h": "c",
         "int32.h": "c",
-        "int16_multi_array.h": "c"
+        "int16_multi_array.h": "c",
+        "pico_uart_transports.h": "c"
     },
 }
