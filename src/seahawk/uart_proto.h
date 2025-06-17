@@ -1,6 +1,8 @@
 #pragma once
 
 #include <stdint.h>
+#include "pico/stdlib.h"
+#include "hardware/uart.h"
 
 // Data message size constants
 #define DATA_SIZE 40

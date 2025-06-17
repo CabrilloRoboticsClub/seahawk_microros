@@ -8,8 +8,8 @@
 #include "crc.h"
 
 uint8_t uart_initialization(uart_inst inst) {
-    gpio_set_function(inst.tx, UART_FUNCSEL_NUM(inst.uart, inst.tx));
-    gpio_set_function(inst.rx, UART_FUNCSEL_NUM(inst.uart, inst.rx));
+    gpio_set_function(inst.tx, GPIO_FUNC_UART);
+    gpio_set_function(inst.rx, GPIO_FUNC_UART);
     uart_init(inst.uart, inst.baudrate);
     return 1;
 }
@@ -22,7 +22,7 @@ uint8_t get_response(uart_inst inst) {
 	uint8_t byte_count = resp[1];
 
 	resp = (uint8_t *) realloc(resp, HEADER_CRC_SIZE + byte_count);
-	uart_write_blocking(inst.uart, PAYLOAD_OFFSET, CRC_SIZE + byte_count);
+	uart_write_blocking(inst.uart, resp + PAYLOAD_OFFSET, CRC_SIZE + byte_count);
 
 	switch(type) {
 		case data:
@@ -102,8 +102,4 @@ sensor_data parse_data(uint8_t* resp) {
 	sensor_data retval;
 	memcpy(&retval, resp + PAYLOAD_OFFSET, DATA_PAYLOAD_SIZE);
 	return retval;
-}
-
-int main() {
-    return 0;
 }
