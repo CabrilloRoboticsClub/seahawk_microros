@@ -30,6 +30,7 @@ uint8_t get_response(uart_inst inst, sensor_data* retval) {
 				return 0;
 			}
 			*retval = parse_data(resp);
+			return 1;
 			break;
 		case request:
 #if BMS == 1
@@ -37,6 +38,7 @@ uint8_t get_response(uart_inst inst, sensor_data* retval) {
 				return 0;
 			}
 			send_data(inst);
+			return 1;
 #else
 			return 0;
 #endif
