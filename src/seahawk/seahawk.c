@@ -55,10 +55,10 @@ void set_duty_cycle(uint16_t levels[]) {
     }
 }
 
-void timer_callback(void) {
+void timer_callback(rcl_timer_t * timer, int64_t last_call_time) {
     sensor_data retval;
     send_request(inst);
-    receive_request(inst, &retval);
+    get_response(inst, &retval);
 }
 
 void subscription_callback(const void * msgin)
@@ -85,7 +85,6 @@ int main()
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
 
-    rcl_timer_t timer;
     rcl_node_t node;
     rcl_allocator_t allocator;
     rclc_support_t support;
@@ -153,6 +152,8 @@ int main()
         &msg,
         &subscription_callback, 
         ON_NEW_DATA);
+    
+    rc = rclc_executor_add_timer(&executor, &timer);
 
     gpio_put(LED_PIN, 1);
 
