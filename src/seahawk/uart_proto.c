@@ -16,13 +16,13 @@ uint8_t uart_initialization(uart_inst inst) {
 
 uint8_t get_response(uart_inst inst) {
 	uint8_t* resp = (uint8_t *) malloc(HEADER_SIZE);
-	uart_write_blocking(inst.uart, resp, HEADER_SIZE);
+	uart_read_blocking(inst.uart, resp, HEADER_SIZE);
 
 	msg_type type = resp[0];
 	uint8_t byte_count = resp[1];
 
 	resp = (uint8_t *) realloc(resp, HEADER_CRC_SIZE + byte_count);
-	uart_write_blocking(inst.uart, resp + PAYLOAD_OFFSET, CRC_SIZE + byte_count);
+	uart_read_blocking(inst.uart, resp + PAYLOAD_OFFSET, CRC_SIZE + byte_count);
 
 	switch(type) {
 		case data:
