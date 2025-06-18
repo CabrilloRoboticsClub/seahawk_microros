@@ -14,7 +14,7 @@ uint8_t uart_initialization(uart_inst inst) {
     return 1;
 }
 
-uint8_t get_response(uart_inst inst) {
+uint8_t get_response(uart_inst inst, sensor_data* retval) {
 	uint8_t* resp = (uint8_t *) malloc(HEADER_SIZE);
 	uart_read_blocking(inst.uart, resp, HEADER_SIZE);
 
@@ -29,8 +29,7 @@ uint8_t get_response(uart_inst inst) {
 			if (byte_count != DATA_PAYLOAD_SIZE || !check_crc(resp, DATA_SIZE_NO_CRC)) {
 				return 0;
 			}
-			sensor_data retval;
-			retval = parse_data(resp);
+			*retval = parse_data(resp);
 			break;
 		case request:
 #if BMS == 1
@@ -47,7 +46,7 @@ uint8_t get_response(uart_inst inst) {
 
 }
 
-uint8_t send_request(msg_type type, uart_inst inst) {
+uint8_t send_request(uart_inst inst) {
 	uint8_t* msg = (uint8_t *) malloc(REQUEST_SIZE_NO_CRC);
 	msg[0] = request;
 	msg[1] = REQUEST_PAYLOAD_SIZE;

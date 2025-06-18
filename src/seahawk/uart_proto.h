@@ -54,7 +54,7 @@ uint8_t uart_initialization(uart_inst inst);
 uint8_t get_response(uart_inst inst);
 
 // Request all data from BMS
-uint8_t send_request(msg_type type, uart_inst inst);
+uint8_t send_request(uart_inst inst);
 
 // Receive request from Pi
 uint8_t receive_request();

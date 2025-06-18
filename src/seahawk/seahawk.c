@@ -17,6 +17,7 @@
 #include "uart_proto.h"
 #include "crc.h"
 
+const uart_inst inst = {uart0, 0, 1, 115200};
 
 const uint LED_PIN = 25;
 
@@ -54,6 +55,11 @@ void set_duty_cycle(uint16_t levels[]) {
     }
 }
 
+void timer_callback(void) {
+    sensor_data retval;
+    send_request(inst);
+    receive_request(inst, &retval);
+}
 
 void subscription_callback(const void * msgin)
 {
@@ -126,6 +132,13 @@ int main()
     msg_layout.data_offset = 0;
     
     msg.layout = msg_layout;
+
+    uart_initialization(inst);
+
+    const unsigned int timer_period = RCL_MS_TO_NS(1000);
+    rcl_timer_t timer;
+    rcl_ret_t rc = rclc_timer_init_default(&timer, &support, timer_period, timer_callback);
+
 
     ret = rclc_subscription_init_default(
         &subscriber, 
