@@ -64,7 +64,7 @@ uint8_t send_data(uart_inst inst) {
 	float bme280_hum;
 	float bme280_press;
 
-	bme280_read_all(*bme280_temperature, *bme280_hum, *bme280_press);
+	bme280_read_all(&bme280_temperature, &bme280_hum, &bme280_press);
 
 	sensor_data data = {
 		gpio_kill_switch_triggered(),

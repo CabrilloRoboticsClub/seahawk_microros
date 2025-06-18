@@ -55,10 +55,14 @@ void set_duty_cycle(uint16_t levels[]) {
     }
 }
 
+int mothertrucker = 0;
+
 void timer_callback(rcl_timer_t * timer, int64_t last_call_time) {
     sensor_data retval;
     send_request(inst);
     get_response(inst, &retval);
+    mothertrucker = (mothertrucker + 1) % 2;
+    gpio_put(LED_PIN, mothertrucker);
 }
 
 void subscription_callback(const void * msgin)
@@ -139,19 +143,19 @@ int main()
     rcl_ret_t rc = rclc_timer_init_default(&timer, &support, timer_period, timer_callback);
 
 
-    ret = rclc_subscription_init_default(
-        &subscriber, 
-        &node,
-        type_support, 
-        "pwm_values");
+    // ret = rclc_subscription_init_default(
+    //     &subscriber, 
+    //     &node,
+    //     type_support, 
+    //     "pwm_values");
 
     rclc_executor_init(&executor, &support.context, 1, &allocator);
-    rclc_executor_add_subscription(
-        &executor, 
-        &subscriber, 
-        &msg,
-        &subscription_callback, 
-        ON_NEW_DATA);
+    // rclc_executor_add_subscription(
+    //     &executor, 
+    //     &subscriber, 
+    //     &msg,
+    //     &subscription_callback, 
+    //     ON_NEW_DATA);
     
     rc = rclc_executor_add_timer(&executor, &timer);
 
