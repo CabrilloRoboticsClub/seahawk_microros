@@ -16,33 +16,48 @@ uint8_t uart_initialization(uart_inst inst) {
 
 uint8_t get_response(uart_inst inst, sensor_data* retval) {
 	uint8_t* resp = (uint8_t *) malloc(HEADER_SIZE);
+
+	if (resp == NULL) return 0;
+
 	uart_read_blocking(inst.uart, resp, HEADER_SIZE);
 
 	msg_type type = resp[0];
 	uint8_t byte_count = resp[1];
 
-	resp = (uint8_t *) realloc(resp, HEADER_CRC_SIZE + byte_count);
+	uint8_t* new_resp = (uint8_t *) realloc(resp, HEADER_CRC_SIZE + byte_count);
+	if (new_resp == NULL) {
+		free(resp);  // avoid leak if realloc fails
+		return 0;
+	}
+	resp = new_resp;
+
 	uart_read_blocking(inst.uart, resp + PAYLOAD_OFFSET, CRC_SIZE + byte_count);
 
 	switch(type) {
 		case data:
 			if (byte_count != DATA_PAYLOAD_SIZE || !check_crc(resp, DATA_SIZE_NO_CRC)) {
+				free(resp);
 				return 0;
 			}
 			*retval = parse_data(resp);
+			free(resp);
 			return 1;
 			break;
 		case request:
 #if BMS == 1
 			if (byte_count != REQUEST_PAYLOAD_SIZE || !check_crc(resp, REQUEST_SIZE_NO_CRC)) {
+				free(resp);
 				return 0;
 			}
 			send_data(inst);
+			free(resp);
 			return 1;
 #else
+			free(resp);
 			return 0;
 #endif
 		default:
+			free(resp);
 			return 0;
 	}
 
@@ -50,11 +65,16 @@ uint8_t get_response(uart_inst inst, sensor_data* retval) {
 
 uint8_t send_request(uart_inst inst) {
 	uint8_t* msg = (uint8_t *) malloc(REQUEST_SIZE_NO_CRC);
+
+	if (msg == NULL) return 0;
+
 	msg[0] = request;
 	msg[1] = REQUEST_PAYLOAD_SIZE;
 
 	add_crc_byte(msg, REQUEST_SIZE_NO_CRC);
 	uart_write_blocking(inst.uart, msg, REQUEST_SIZE);
+
+	free(msg);
 
 	return 1;
 }
@@ -68,7 +88,7 @@ uint8_t send_data(uart_inst inst) {
 
 	bme280_read_all(&bme280_temperature, &bme280_hum, &bme280_press);
 
-	sensor_data data = {
+	sensor_data sen_data = {
 		gpio_kill_switch_triggered(),
 		ina780_read_current(),
 		ina780_read_bus_voltage(),
@@ -78,22 +98,25 @@ uint8_t send_data(uart_inst inst) {
 		bme280_temperature,
 		bme280_hum,
 		bme280_press,
-	}
+	};
 
 	// Initialize msg
-	msg_type type = data;
 	uint8_t bytes = DATA_PAYLOAD_SIZE;
 	uint8_t* msg = (uint8_t *) malloc(DATA_SIZE_NO_CRC); // Header + byte count + payload
+
+	if (msg == NULL) return 0;
 
 	// Fill msg with data
 	msg[HEADER_OFFSET] = data;
 	msg[BYTE_COUNT_OFFSET] = bytes;
 
-	memcpy(msg + PAYLOAD_OFFSET, &data, bytes);
+	memcpy(msg + PAYLOAD_OFFSET, &sen_data, bytes);
 
 	// Add crc and transmit
 	add_crc_byte(msg, DATA_SIZE_NO_CRC);
 	uart_write_blocking(inst.uart, msg, DATA_SIZE); // Header + byte count + payload + crc
+
+	free(msg);
 
 	return 1;
 }
