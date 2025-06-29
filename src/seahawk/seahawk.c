@@ -6,6 +6,7 @@
 #include <rclc/executor.h>
 #include <std_msgs/msg/int32.h>
 #include <std_msgs/msg/int16_multi_array.h>
+#include <std_msgs/msg/float64_multi_array.h>
 #include <rmw_microros/rmw_microros.h>
 
 #include "pico/stdlib.h"
@@ -61,6 +62,19 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time) {
     sensor_data retval;
     send_request(inst);
     get_response(inst, &retval);
+    std_msgs__msg__Float64MultiArray msg;
+    double float_data[9] = {
+        (double) retval.kill,
+        (double) retval.ina780_current,
+        (double) retval.ina780_voltage,
+        (double) retval.ina780_temperature,
+        (double) retval.ina780_power,
+        (double) retval.ina780_energy,
+        (double) retval.bme280_temperature,
+        (double) retval.bme280_hum,
+        (double) retval.bme280_press,
+    };
+    msg.data.data = float_data;
     mothertrucker = (mothertrucker + 1) % 2;
     gpio_put(LED_PIN, mothertrucker);
 }
@@ -74,8 +88,8 @@ void subscription_callback(const void * msgin)
 
 int main()
 {
-    const rosidl_message_type_support_t * type_support =
-        ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int16MultiArray);
+    // const rosidl_message_type_support_t * type_support =
+    //     ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int16MultiArray);
 
     rmw_uros_set_custom_transport(
 		true,
@@ -114,27 +128,49 @@ int main()
     
     rclc_node_init_default(&node, "pico_node", "", &support);
 
-    // Define msg
-    std_msgs__msg__Int16MultiArray msg;
+    // Define pwm_msg
+    std_msgs__msg__Int16MultiArray pwm_msg;
 
     // Define msg data Int16 Sequence
-    rosidl_runtime_c__int16__Sequence msg_data;
-    msg_data.size = 0;
-    msg_data.capacity = 8;
-    int16_t msg_data_data[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-    msg_data.data = msg_data_data;
+    rosidl_runtime_c__int16__Sequence pwm_msg_data;
+    pwm_msg_data.size = 0;
+    pwm_msg_data.capacity = 8;
+    int16_t pwm_msg_data_data[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+    pwm_msg_data.data = pwm_msg_data_data;
 
-    msg.data = msg_data;
+    pwm_msg.data = pwm_msg_data;
 
     // Define msg layout MultiArray Layout
 
-    std_msgs__msg__MultiArrayLayout msg_layout;
+    std_msgs__msg__MultiArrayLayout pwm_msg_layout;
 
-    std_msgs__msg__MultiArrayDimension__Sequence msg_layout_dim;
-    msg_layout.dim = msg_layout_dim;
-    msg_layout.data_offset = 0;
+    std_msgs__msg__MultiArrayDimension__Sequence pwm_msg_layout_dim;
+    pwm_msg_layout.dim = pwm_msg_layout_dim;
+    pwm_msg_layout.data_offset = 0;
     
-    msg.layout = msg_layout;
+    pwm_msg.layout = pwm_msg_layout;
+
+    // Define bms_msg
+    std_msgs__msg__Float64MultiArray bms_msg;
+
+    // Define bms_msg data Float64 Sequence
+    rosidl_runtime_c__double__Sequence bms_msg_data;
+    bms_msg_data.size = 0;
+    bms_msg_data.capacity = 9;
+    double bms_msg_data_data[9] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+    bms_msg_data.data = bms_msg_data_data;
+
+    bms_msg.data = bms_msg_data;
+
+    // Define bms_msg_layout
+
+    std_msgs__msg__MultiArrayLayout bms_msg_layout;
+
+    std_msgs__msg__MultiArrayDimension__Sequence bms_msg_layout_dim;
+    bms_msg_layout.dim = bms_msg_layout_dim;
+    bms_msg_layout.data_offset = 0;
+    
+    bms_msg.layout = bms_msg_layout;
 
     uart_initialization(inst);
 
@@ -143,19 +179,25 @@ int main()
     rcl_ret_t rc = rclc_timer_init_default(&timer, &support, timer_period, timer_callback);
 
 
-    // ret = rclc_subscription_init_default(
-    //     &subscriber, 
-    //     &node,
-    //     type_support, 
-    //     "pwm_values");
+    ret = rclc_subscription_init_default(
+        &subscriber, 
+        &node,
+        ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int16MultiArray), 
+        "pwm_values");
+
+    ret = rclc_publisher_init_default(
+        &publisher,
+        &node,
+        ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float64MultiArray),
+        "bms_data");
 
     rclc_executor_init(&executor, &support.context, 1, &allocator);
-    // rclc_executor_add_subscription(
-    //     &executor, 
-    //     &subscriber, 
-    //     &msg,
-    //     &subscription_callback, 
-    //     ON_NEW_DATA);
+    rclc_executor_add_subscription(
+        &executor, 
+        &subscriber, 
+        &pwm_msg,
+        &subscription_callback, 
+        ON_NEW_DATA);
     
     rc = rclc_executor_add_timer(&executor, &timer);
 
