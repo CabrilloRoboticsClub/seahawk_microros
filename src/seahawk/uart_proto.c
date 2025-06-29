@@ -7,14 +7,14 @@
 #include "uart_proto.h"
 #include "crc.h"
 
-uint8_t uart_initialization(uart_inst inst) {
+bool uart_initialization(uart_inst inst) {
     gpio_set_function(inst.tx, GPIO_FUNC_UART);
     gpio_set_function(inst.rx, GPIO_FUNC_UART);
     uart_init(inst.uart, inst.baudrate);
     return 1;
 }
 
-uint8_t get_response(uart_inst inst, sensor_data* retval) {
+bool get_response(uart_inst inst, sensor_data* retval) {
 	uint8_t* resp = (uint8_t *) malloc(HEADER_SIZE);
 
 	if (resp == NULL) return 0;
@@ -33,37 +33,38 @@ uint8_t get_response(uart_inst inst, sensor_data* retval) {
 
 	uart_read_blocking(inst.uart, resp + PAYLOAD_OFFSET, CRC_SIZE + byte_count);
 
+	bool success = true;
+
 	switch(type) {
 		case data:
 			if (byte_count != DATA_PAYLOAD_SIZE || !check_crc(resp, DATA_SIZE_NO_CRC)) {
-				free(resp);
-				return 0;
+				success = false;
+			} else {
+				*retval = parse_data(resp);
+				break;
 			}
-			*retval = parse_data(resp);
-			free(resp);
-			return 1;
-			break;
 		case request:
 #if BMS == 1
 			if (byte_count != REQUEST_PAYLOAD_SIZE || !check_crc(resp, REQUEST_SIZE_NO_CRC)) {
-				free(resp);
-				return 0;
+				success = false;
+			} else {
+				send_data(inst);
 			}
-			send_data(inst);
-			free(resp);
-			return 1;
+			break;
 #else
-			free(resp);
-			return 0;
+			success = false;
+			break;
 #endif
 		default:
-			free(resp);
-			return 0;
+			success = false;
+			break;
 	}
+	free(resp);
+	return success;
 
 }
 
-uint8_t send_request(uart_inst inst) {
+bool send_request(uart_inst inst) {
 	uint8_t* msg = (uint8_t *) malloc(REQUEST_SIZE_NO_CRC);
 
 	if (msg == NULL) return 0;
@@ -80,7 +81,7 @@ uint8_t send_request(uart_inst inst) {
 }
 
 #if BMS == 1
-uint8_t send_data(uart_inst inst) {
+bool send_data(uart_inst inst) {
 	// Make readings
 	float bme280_temperature;
 	float bme280_hum;

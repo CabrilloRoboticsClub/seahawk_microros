@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <stdbool.h>
 #include "pico/stdlib.h"
 #include "hardware/uart.h"
 
@@ -49,15 +50,15 @@ typedef struct sensor_data {
 	
 } sensor_data;
 
-uint8_t uart_initialization(uart_inst inst);
+bool uart_initialization(uart_inst inst);
 
-uint8_t get_response(uart_inst inst, sensor_data* retval);
+bool get_response(uart_inst inst, sensor_data* retval);
 
 // Request all data from BMS
-uint8_t send_request(uart_inst inst);
+bool send_request(uart_inst inst);
 
 // Return all data to Pi
-uint8_t send_data(uart_inst inst);
+bool send_data(uart_inst inst);
 
 // Read in data from BMS
 sensor_data parse_data(uint8_t* data);
