@@ -75,8 +75,15 @@ void timer_callback(rcl_timer_t * timer, int64_t last_call_time) {
         (double) retval.bme280_press,
     };
     msg.data.data = float_data;
+    msg.data.size = 9;
+    msg.data.capacity = 9;
+    msg.layout.dim.size = 0;
+    msg.layout.dim.capacity = 0;
+    msg.layout.dim.data = NULL;
+    msg.layout.data_offset = 0;
     mothertrucker = (mothertrucker + 1) % 2;
     gpio_put(LED_PIN, mothertrucker);
+    rcl_ret_t ret = rcl_publish(&publisher, &msg, NULL); // ignore
 }
 
 void subscription_callback(const void * msgin)
@@ -145,6 +152,10 @@ int main()
     std_msgs__msg__MultiArrayLayout pwm_msg_layout;
 
     std_msgs__msg__MultiArrayDimension__Sequence pwm_msg_layout_dim;
+    pwm_msg_layout_dim.size = 0;
+    pwm_msg_layout_dim.capacity = 0;
+    pwm_msg_layout_dim.data = NULL;
+
     pwm_msg_layout.dim = pwm_msg_layout_dim;
     pwm_msg_layout.data_offset = 0;
     
@@ -167,6 +178,10 @@ int main()
     std_msgs__msg__MultiArrayLayout bms_msg_layout;
 
     std_msgs__msg__MultiArrayDimension__Sequence bms_msg_layout_dim;
+    bms_msg_layout_dim.size = 0;
+    bms_msg_layout_dim.capacity = 0;
+    bms_msg_layout_dim.data = NULL;
+
     bms_msg_layout.dim = bms_msg_layout_dim;
     bms_msg_layout.data_offset = 0;
     
