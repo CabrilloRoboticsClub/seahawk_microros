@@ -17,7 +17,7 @@ bool uart_initialization(uart_inst inst) {
 bool get_response(uart_inst inst, sensor_data* retval) {
 	uint8_t* resp = (uint8_t *) malloc(HEADER_SIZE);
 
-	if (resp == NULL) return 0;
+	if (resp == NULL) return false;
 
 	uart_read_blocking(inst.uart, resp, HEADER_SIZE);
 
@@ -27,7 +27,7 @@ bool get_response(uart_inst inst, sensor_data* retval) {
 	uint8_t* new_resp = (uint8_t *) realloc(resp, HEADER_CRC_SIZE + byte_count);
 	if (new_resp == NULL) {
 		free(resp);  // avoid leak if realloc fails
-		return 0;
+		return false;
 	}
 	resp = new_resp;
 
@@ -67,7 +67,7 @@ bool get_response(uart_inst inst, sensor_data* retval) {
 bool send_request(uart_inst inst) {
 	uint8_t* msg = (uint8_t *) malloc(REQUEST_SIZE_NO_CRC);
 
-	if (msg == NULL) return 0;
+	if (msg == NULL) return false;
 
 	msg[0] = request;
 	msg[1] = REQUEST_PAYLOAD_SIZE;
@@ -77,7 +77,7 @@ bool send_request(uart_inst inst) {
 
 	free(msg);
 
-	return 1;
+	return true;
 }
 
 #if BMS == 1
@@ -119,7 +119,7 @@ bool send_data(uart_inst inst) {
 
 	free(msg);
 
-	return 1;
+	return true;
 }
 #endif
 

@@ -39,6 +39,6 @@ void add_crc_byte(uint8_t *buffer, uint16_t length) {
 	buffer[length] = crc;
 }
 
-uint8_t check_crc(const uint8_t *buffer, uint16_t length_no_crc) {
+bool check_crc(const uint8_t *buffer, uint16_t length_no_crc) {
 	return get_crc_byte(buffer, length_no_crc) == buffer[length_no_crc];
 }

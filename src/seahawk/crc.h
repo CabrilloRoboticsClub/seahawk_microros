@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdbool.h>
+
 // Constants used in CRC generation
 
 #define CRC_8_RESULT_WIDTH                  8u
@@ -14,4 +16,4 @@ uint8_t get_crc_byte(const uint8_t *buffer, uint16_t length);
 void add_crc_byte(uint8_t *buffer, uint16_t length);
 
 // Length should be of buffer without the crc
-uint8_t check_crc(const uint8_t *buffer, uint16_t length_no_crc);
+bool check_crc(const uint8_t *buffer, uint16_t length_no_crc);
