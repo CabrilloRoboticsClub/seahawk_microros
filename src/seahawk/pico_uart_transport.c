@@ -2,6 +2,7 @@
 #include "pico/stdlib.h"
 
 #include <uxr/client/profile/transport/custom/custom_transport.h>
+#include <hardware/uart.h>
 
 void usleep(uint64_t us)
 {
@@ -19,6 +20,11 @@ int clock_gettime(clockid_t unused, struct timespec *tp)
 bool pico_serial_transport_open(struct uxrCustomTransport * transport)
 {
     stdio_init_all();
+    uart_init(uart0, 115200);
+    gpio_set_function(0, GPIO_FUNC_UART);
+    gpio_set_function(1, GPIO_FUNC_UART);
+    uart_set_hw_flow(uart0, false, false);
+    uart_set_format(uart0, 8, 1, UART_PARITY_NONE);
     return true;
 }
 
