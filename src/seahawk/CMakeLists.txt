@@ -11,12 +11,16 @@ pico_sdk_init()
 link_directories($ENV{MICRO_ROS_RPI_PICO_PATH}/libmicroros)
 
 add_executable(seahawk
+    crc.c
+    uart_proto.c
     seahawk.c
     pico_uart_transport.c
 )
 target_link_libraries(seahawk
     pico_stdlib
     microros
+    hardware_pwm
+    hardware_pio
 )
 
 target_include_directories(seahawk PUBLIC
