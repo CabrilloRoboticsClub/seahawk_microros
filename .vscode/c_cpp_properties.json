@@ -5,13 +5,15 @@
         "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
         "limitSymbolsToIncludedHeaders": false
       },
-      "includePath": [
-        "/opt/ros/humble/include/**",
-        "/usr/include/**"
+      "name": "Pico ARM",
+      "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+      "compilerArgs": [
+        "-mcpu=cortex-m0plus",
+        "-mthumb"
       ],
-      "name": "ros2",
-      "intelliSenseMode": "gcc-x64",
-      "compilerPath": "/usr/bin/gcc",
+      "intelliSenseMode": "gcc-arm",
+      "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+      "configurationProvider": "ms-vscode.cmake-tools",
       "cStandard": "gnu11",
       "cppStandard": "c++17"
     }

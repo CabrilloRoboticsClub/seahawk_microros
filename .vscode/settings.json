@@ -5,19 +5,18 @@
     },
     "git.detectSubmodules": false,
     "cmake.sourceDirectory": "${workspaceFolder}/src/seahawk",
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "C_Cpp.default.compilerPath": "/usr/bin/arm-none-eabi-gcc",
+    "C_Cpp.default.intelliSenseMode": "gcc-arm",
+    "C_Cpp.default.cStandard": "gnu11",
+    "C_Cpp.default.cppStandard": "c++17",
     "files.associations": {
         "stdio.h": "c",
         "rmw_microros.h": "c",
         "int32.h": "c",
         "int16_multi_array.h": "c"
     },
-    "ROS2.distro": "humble",
-    "python.autoComplete.extraPaths": [
-        "/opt/ros/humble/lib/python3.10/site-packages",
-        "/opt/ros/humble/local/lib/python3.10/dist-packages"
-    ],
-    "python.analysis.extraPaths": [
-        "/opt/ros/humble/lib/python3.10/site-packages",
-        "/opt/ros/humble/local/lib/python3.10/dist-packages"
-    ],
+    "ROS2.distro": "lyrical",
 }
