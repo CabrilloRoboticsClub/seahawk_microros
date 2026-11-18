@@ -60,6 +60,13 @@ To setup an Ubuntu Desktop to be able to compile this repo run these steps:
     1. `CMake: Select a Kit` and select `arm-none-eabi`
 1. Now you can build the project by pressing `F7` while editing a source file.
 
+# Devcontainer Setup 
+
+This project can run in a devcontainer. If you're not using Ubuntu 26.04 this is
+the best way to be able to build and test this code. To follow the build 
+instructions make sure the `CMake Tools` extension is installed inside the 
+devcontainer. 
+
 ## Connecting Nodes on the Pico
 
 To connect the Pico to the rest of ROS use Docker on the Raspberry Pi:
