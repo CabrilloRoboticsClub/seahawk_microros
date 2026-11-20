@@ -10,7 +10,6 @@
 
 #include "pico/stdlib.h"
 #include "pico_uart_transports.h"
-#include "hardware/pio.h"
 #include "hardware/pwm.h"
 
 
